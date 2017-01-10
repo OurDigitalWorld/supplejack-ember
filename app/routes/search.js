@@ -1,10 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model(){
+  model(params){
     return this.get('store').query('record', {
       api_key: 'apikey',
-      fields: 'all'
+      fields: 'all',
+      page: params.page,
+      text: params.text
     });
+  },
+  queryParams: {
+    page: {refreshModel: true},
+    text: {refreshModel: true}
   }
 });
