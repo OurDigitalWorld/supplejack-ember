@@ -1,55 +1,84 @@
-<p class="result-offset">Viewing {{offset}}-{{offsetLast}} of {{meta.result_count}} results.</p>
-<p class="pagination-links">
-  {{! first page }}
-  {{#if (gt meta.page 2)}}
-    {{#link-to (query-params page=1)}}1{{/link-to}}
-  {{/if}}
-  {{! page - 10}}
-  {{#if (gt meta.page 11)}}
-    {{#link-to (query-params page=(sub meta.page 10))}}
-      {{sub meta.page 10}}
-    {{/link-to}}
-  {{/if}}
-  {{! page - 5}}
-  {{#if (gt meta.page 6)}}
-    {{#link-to (query-params page=(sub meta.page 5))}}
-      {{sub meta.page 5}}
-    {{/link-to}}
-  {{/if}}
-  {{! elipses if page is greater than 3}}
-  {{#if (gt meta.page 3)}}...{{/if}}
-  {{! page - 1}}
-  {{#if (gt meta.page 1)}}
-    {{#link-to (query-params page=(sub meta.page 1))}}
-      {{sub meta.page 1}}
-    {{/link-to}}
-  {{/if}}
-  {{! displays current page}}
-  <strong>{{meta.page}}</strong>
-  {{! page + 1}}
-  {{#if (gt lastPage meta.page)}}
-    {{#link-to (query-params page=(add meta.page 1))}}
-      {{add meta.page 1}}
-    {{/link-to}}
-  {{/if}}
-  {{! elipses if last page is greater than page + 2}}
-  {{#if (gt lastPage (add meta.page 2))}}...{{/if}}
-  {{! page + 5}}
-  {{#if (gt lastPage (add meta.page 5))}}
-    {{#link-to (query-params page=(add meta.page 5))}}
-      {{add meta.page 5}}
-    {{/link-to}}
-  {{/if}}
-  {{! page + 10}}
-  {{#if (gt lastPage (add meta.page 10))}}
-    {{#link-to (query-params page=(add meta.page 10))}}
-      {{add meta.page 10}}
-    {{/link-to}}
-  {{/if}}
-  {{! last page}}
-  {{#if (gt lastPage (add meta.page 1))}}
-    {{#link-to (query-params page=lastPage)}}
-      {{lastPage}}
-    {{/link-to}}
-  {{/if}}
-</p>
+{{!--HOW TO USE
+Add this to your template to display pagination information and links on your page, such as:
+Syntax:
+{{search-pagination meta=model.meta display="both"}}
+meta: an object containing pagination metadata for current model (results_count, page, and per_page)
+display (optional):
+  "offset" : displays offset info (ie "Viewing 0-20 of 157 results.")
+  "links" : displays links for changing pages
+  "both" (default) : displays both offset and links.
+--}}
+{{#if (or (eq display "offset") (eq display "both"))}}
+  <p class="pagination-offset">Viewing {{offset}}-{{offsetLast}} of {{meta.result_count}} results.</p>
+{{/if}}
+{{#if (or (eq display "links") (eq display "both"))}}
+  <p class="pagination-links">
+    {{! previous page link}}
+    {{#if (gt meta.page 1)}}
+      {{#link-to (query-params page=(sub meta.page 1))}}
+        &lt;&lt;
+      {{/link-to}}
+      &nbsp;&nbsp;
+    {{/if}}
+    {{! first page }}
+    {{#if (gt meta.page 2)}}
+      {{#link-to (query-params page=1)}}1{{/link-to}},
+    {{/if}}
+    {{! page - 10}}
+    {{#if (gt meta.page 11)}}
+      {{#link-to (query-params page=(sub meta.page 10))}}
+        {{sub meta.page 10}}
+      {{/link-to}},
+    {{/if}}
+    {{! page - 5}}
+    {{#if (gt meta.page 6)}}
+      {{#link-to (query-params page=(sub meta.page 5))}}
+        {{sub meta.page 5}}
+      {{/link-to}},
+    {{/if}}
+    {{! elipses if page is greater than 3}}
+    {{#if (gt meta.page 3)}}...{{/if}}
+    {{! page - 1}}
+    {{#if (gt meta.page 1)}}
+      {{#link-to (query-params page=(sub meta.page 1))}}
+        {{sub meta.page 1}}
+      {{/link-to}},
+    {{/if}}
+    {{! displays current page}}
+    <strong>{{meta.page}}</strong>,
+    {{! page + 1}}
+    {{#if (gt lastPage meta.page)}}
+      {{#link-to (query-params page=(add meta.page 1))}}
+        {{add meta.page 1}}
+      {{/link-to}},
+    {{/if}}
+    {{! elipses if last page is greater than page + 2}}
+    {{#if (gt lastPage (add meta.page 2))}}...{{/if}}
+    {{! page + 5}}
+    {{#if (gt lastPage (add meta.page 5))}}
+      {{#link-to (query-params page=(add meta.page 5))}}
+        {{add meta.page 5}}
+      {{/link-to}},
+    {{/if}}
+    {{! page + 10}}
+    {{#if (gt lastPage (add meta.page 10))}}
+      {{#link-to (query-params page=(add meta.page 10))}}
+        {{add meta.page 10}}
+      {{/link-to}},
+    {{/if}}
+    {{! last page}}
+    {{#if (gt lastPage (add meta.page 1))}}
+      {{#link-to (query-params page=lastPage)}}
+        {{lastPage}}
+      {{/link-to}}
+    {{/if}}
+    {{! next page link}}
+    {{#if (gt lastPage meta.page)}}
+      &nbsp;&nbsp;
+      {{#link-to (query-params page=(add meta.page 1))}}
+        &gt;&gt;
+      {{/link-to}}
+    {{/if}}
+  </p>
+{{/if}}
+

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  display: 'both',
   //computed value of last page that will contain content
   lastPage: Ember.computed('meta', function(){
     return Math.ceil(this.get('meta.result_count') / this.get('meta.per_page'));
