@@ -6,11 +6,13 @@ export default Ember.Route.extend({
       api_key: 'apikey',
       fields: 'all',
       page: params.page,
-      text: params.text
+      text: params.text,
+      per_page: params.per_page,
     });
   },
   queryParams: {
     page: {refreshModel: true},
-    text: {refreshModel: true}
+    text: {refreshModel: true},
+    per_page: {refreshModel: true, replace: true}
   }
 });

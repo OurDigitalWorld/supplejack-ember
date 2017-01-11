@@ -1,0 +1,6 @@
+<label for="searchbar-search" class="sr-only">Search:</label>
+
+<form method="post" {{action "executeSearch" searchParams on="submit"}}>
+  {{input value=searchParams.text}}
+  <button>Search</button>
+</form>

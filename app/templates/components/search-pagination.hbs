@@ -1,18 +1,29 @@
 {{!--HOW TO USE
 Add this to your template to display pagination information and links on your page, such as:
 Syntax:
-{{search-pagination meta=model.meta display="both"}}
+{{search-pagination meta=model.meta onChange=(action "updateOffset") display="both"}}
 meta: an object containing pagination metadata for current model (results_count, page, and per_page)
+onChange: action to be executed when the per_page value is changed.
 display (optional):
   "offset" : displays offset info (ie "Viewing 0-20 of 157 results.")
   "links" : displays links for changing pages
   "both" (default) : displays both offset and links.
 --}}
 {{#if (or (eq display "offset") (eq display "both"))}}
-  <p class="pagination-offset">Viewing {{offset}}-{{offsetLast}} of {{meta.result_count}} results.</p>
+  <div class="pagination-offset">
+    Viewing {{offset}}-{{offsetLast}} of {{meta.result_count}} results.
+    <label for="results-per-page">Results per page</label>
+    <select onchange={{action "selectOffset" value="target.value"}}>
+      {{#each offsetOptions as |option|}}
+        <option value={{option.value}} selected={{eq offsetAmount option.value}}>
+          {{option.value}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
 {{/if}}
 {{#if (or (eq display "links") (eq display "both"))}}
-  <p class="pagination-links">
+  <div class="pagination-links">
     {{! previous page link}}
     {{#if (gt meta.page 1)}}
       {{#link-to (query-params page=(sub meta.page 1))}}
@@ -79,6 +90,6 @@ display (optional):
         &gt;&gt;
       {{/link-to}}
     {{/if}}
-  </p>
+  </div>
 {{/if}}
 

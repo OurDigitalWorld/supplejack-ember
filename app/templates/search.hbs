@@ -1,5 +1,5 @@
-<label for="input-text">Text</label>{{input id="input-text" value=text}} <br />
-{{search-pagination meta=model.meta}}
+{{search-searchbar onChange=(action "updateParam" "text")}}
+{{search-pagination meta=model.meta onChange=(action "updateOffset")}}
 {{#each model as |item|}}
   <strong><a href={{item.source_url}}>{{item.title}}</a></strong> {{item.description}} <br />
 {{/each}}
