@@ -13,5 +13,5 @@ export default DS.Model.extend({
   language: DS.attr(),
   rights: DS.attr(),
   format: DS.attr(),
-  publisher: DS.attr()
+  publisher: DS.attr(),
 });

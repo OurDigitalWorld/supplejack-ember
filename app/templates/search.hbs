@@ -1,6 +1,5 @@
 <label for="input-text">Text</label>{{input id="input-text" value=text}} <br />
-<label for="input-page">Page</label>{{input id="input-page" value=page}} <br />
-
+{{search-pagination meta=model.meta}}
 {{#each model as |item|}}
-  {{item.title}} {{item.language}} <br />
+  <strong><a href={{item.source_url}}>{{item.title}}</a></strong> {{item.description}} <br />
 {{/each}}
