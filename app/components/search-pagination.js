@@ -34,9 +34,20 @@ export default Ember.Component.extend({
     {value: 100},
   ],
   actions: {
+    //function for changing which page is showing when you change the per_page value
+    // ensures that the same results stay near the top of the page
     selectOffset(value){
       this.set('offsetAmount', value);
-      this.get('onChange')(value);
+      //determines what the new page should be to keep same results on page
+      let firstResult = ((this.get('meta.page') - 1 ) * this.get('meta.per_page')) + 1;
+      let newPage = Math.ceil(firstResult / value);
+      //creates object to send up to the updateParams function in the controller
+      let obj = {
+        page: newPage,
+        per_page: value,
+      };
+      //bubbles action up
+      this.get('onChange')(obj);
     }
   }
 });

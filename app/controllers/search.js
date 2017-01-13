@@ -30,15 +30,8 @@ export default Ember.Controller.extend({
   ],
 
   actions: {
-    //needs a specific function to ensure that you stay on the right page when the offset changes
-    updateOffset(value){
-      //changes current page to keep same results on page
-      let firstResult = ((this.get('page') - 1) * this.get('per_page')) + 1;
-      this.set("page", Math.ceil(firstResult / value));
-      //sets new per_page value
-      this.set("per_page", value);
-    },
-    //takes an object containing key/value pairs
+    //updates queryParams
+    //accepts object containing key/value pairs
     //where the key is a param name, and the value is its value
     updateParams(obj){
       for (const key in obj){

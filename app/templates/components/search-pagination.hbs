@@ -1,9 +1,9 @@
 {{!--HOW TO USE
 Add this to your template to display pagination information and links on your page, such as:
 Syntax:
-{{search-pagination meta=model.meta onChange=(action "updateOffset") display="both"}}
+{{search-pagination meta=model.meta onChange=(action "updateParams") display="both"}}
 meta: an object containing pagination metadata for current model (results_count, page, and per_page)
-onChange: action to be executed when the per_page value is changed.
+onChange: action to be executed when queryParams are changed by this component.
 display (optional):
   "offset" : displays offset info (ie "Viewing 0-20 of 157 results.")
   "links" : displays links for changing pages

@@ -1,5 +1,5 @@
 {{search-searchbar fields=recordFields onChange=(action "updateParams")}}
-{{search-pagination meta=model.meta onChange=(action "updateOffset")}}
+{{search-pagination meta=model.meta onChange=(action "updateParams")}}
 {{#each model as |item|}}
   <strong><a href={{item.source_url}}>{{item.title}}</a></strong> {{item.description}} <br />
 {{/each}}
