@@ -12,6 +12,8 @@ export default DS.Model.extend({
   category: DS.attr(),
   language: DS.attr(),
   rights: DS.attr(),
-  format: DS.attr(),
   publisher: DS.attr(),
+
+  //note: Available metadata for this model (access in template through model.meta)
+  // result_count, per_page, page, facets
 });

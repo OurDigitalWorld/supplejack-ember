@@ -1,6 +1,25 @@
 <label for="searchbar-search" class="sr-only">Search:</label>
 
 <form method="post" {{action "executeSearch" searchParams on="submit"}}>
-  {{input value=searchParams.text}}
-  <button>Search</button>
+  <div>
+    {{input value=searchParams.text}}
+    <button type="submit">Search</button>
+  </div>
+  {{#if showAdvancedSearch}}
+    <div>
+      <select>
+        {{#each fields as |field|}}
+          <option value={{field.value}}>{{field.title}}</option>
+        {{/each}}
+      </select>
+      <select>
+        <option value="and">includes</option>
+        <option value="without">doesn't include</option>
+      </select>
+      {{input}}
+      OR
+      {{input}}
+    </div>
+  {{/if}}
+  <button type="button" {{action "toggleAdvancedSearch"}}>{{if showAdvancedSearch 'Hide '}}Advanced Search</button>
 </form>
