@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   offsetAmount: '',
   init() {
     this._super(...arguments);
-    this.set('offsetAmount', this.get('meta.per_page'))
+    this.set('offsetAmount', this.get('meta.per_page'));
   },
   //computed value of last page that will contain content
   lastPage: Ember.computed('meta', function(){

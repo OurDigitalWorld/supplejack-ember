@@ -2,18 +2,65 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params){
-
+    //USER EDITABLE params (found in queryParams)
     for (const key in params){
-      if (!params.hasOwnProperty(key)) continue;
+      if (!params.hasOwnProperty(key)) {continue;}
       //removes any params that haven't been assigned a value
       if (params[key] === '' || params[key] === null){
         delete params[key];
       }
-      //add bit here to destringify 'and' / 'or / 'without' params
     }
+
+    //converts incoming "and" params into the format expected by the Supplejack API
+    if (typeof params.and != "undefined" && params.and.length > 0){
+      let andArray = params.and.split(",").slice(0,-1);
+      //create set of unique "and" parameters"
+      let keys = new Set();
+      andArray.forEach((and)=>{
+        //slice off key, add to set
+        let key = and.split(":");
+        keys.add(key[0]);
+      });
+      //for each unique key...
+      keys.forEach((key)=>{
+        let array = [];
+        //check all params for values with this key
+        andArray.forEach((and)=>{
+          let keyVal = and.split(":");
+          if (keyVal[0] === key) {
+            //add the values to an array
+            array.push(keyVal[1]);
+          }
+        });
+
+        if (array.length > 1){
+          //if there's more than one value for this key, send as an array
+          params[`and[${key}]`] = array;
+        } else {
+          //otherwise, send as a string
+          params[`and[${key}]`] = array[0];
+        }
+      });
+    }
+
+    //ensures that stringified params aren't sent to server
+    delete params.and;
+    delete params.or;
+    delete params.without;
+
+    //SYSTEM-BASED params
     //adds the api key and field set to the params to be sent to the API
     params.api_key = 'apikey';
     params.fields = 'all';
+
+    //adds facets to params
+
+    let facets = this.controllerFor('search').get('recordFacets');
+    if(facets.length > 0){
+      params.facets = facets;
+    }
+
+    console.log(params);
     //fetches the model from the API with given params
     return this.get('store').query('record', params);
   },
@@ -28,9 +75,12 @@ export default Ember.Route.extend({
     // passing them to the API.
     and: {refreshModel: true},
     or: {refreshModel: true},
-    without: {refreshModel: true},
-    //facets is used to return metadata showing all the possible options for a given field
-    // this data can then be access in a template through {{#each model.meta.facets.field_name as |item|}}
-    facets: {refreshModel: true}
+    without: {refreshModel: true}
+  },
+
+  serializeQueryParam: function(value, urlKey, defaultValueType){
+    if (defaultValueType === 'array'){
+      return value;
+    }
   }
 });

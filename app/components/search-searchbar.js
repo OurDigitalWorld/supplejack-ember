@@ -7,7 +7,7 @@ export default Ember.Component.extend({
       this.get('onChange')(value);
     },
     toggleAdvancedSearch(){
-      this.toggleProperty('showAdvancedSearch')
+      this.toggleProperty('showAdvancedSearch');
     }
   }
 });
