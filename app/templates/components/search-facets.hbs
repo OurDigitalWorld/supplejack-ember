@@ -1,0 +1,16 @@
+<ul>
+{{#each-in meta.facets as |facet options|}}
+  <li>{{facet}}
+    <ul>
+      {{#each-in options as |title results|}}
+        <li>
+          {{#link-to (query-params and=(concat facet ":" title ","))}}
+            {{title}}
+          {{/link-to}}
+          : {{results}}
+        </li>
+      {{/each-in}}
+    </ul>
+  </li>
+{{/each-in}}
+</ul>

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params){
-    //USER EDITABLE params (found in queryParams)
+    //USER EDITABLE PARAMS (found in queryParams)
     for (const key in params){
       if (!params.hasOwnProperty(key)) {continue;}
       //removes any params that haven't been assigned a value
@@ -10,8 +10,8 @@ export default Ember.Route.extend({
         delete params[key];
       }
     }
-
-    //converts incoming "and" params into the format expected by the Supplejack API
+    //SERIALIZE "AND", "OR", and "WITHOUT" PARAMS
+    //Note:  need to alter function to work for all three params that need serialization
     if (typeof params.and != "undefined" && params.and.length > 0){
       let andArray = params.and.split(",").slice(0,-1);
       //create set of unique "and" parameters"
@@ -43,7 +43,7 @@ export default Ember.Route.extend({
       });
     }
 
-    //ensures that stringified params aren't sent to server
+    //DELETE SERIALIZED PARAMS
     delete params.and;
     delete params.or;
     delete params.without;
@@ -52,15 +52,13 @@ export default Ember.Route.extend({
     //adds the api key and field set to the params to be sent to the API
     params.api_key = 'apikey';
     params.fields = 'all';
-
     //adds facets to params
-
     let facets = this.controllerFor('search').get('recordFacets');
     if(facets.length > 0){
       params.facets = facets;
     }
-
-    console.log(params);
+    //MODEL RETURN
+    // console.log(params);
     //fetches the model from the API with given params
     return this.get('store').query('record', params);
   },
