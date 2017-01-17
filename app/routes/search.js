@@ -6,19 +6,19 @@ export default Ember.Route.extend({
     //VARIABLE DEFINITIONS
     let queryParams = transition.queryParams;
     let validFields = this.controllerFor('search').get('recordValues'); //array of all possible field values
-    let regExp = new RegExp("^[A-Za-z0-9 _\*\-]*[A-Za-z0-9\*\-][A-Za-z0-9 _\*\-]*$"); //regexp that tests that a string only contains letters, numbers, spaces, asterisks, or dashes
+    let regExp = new RegExp(/[`~,.<>;':"/[\]|{}=+\@\!]/,"g"); //regexp that tests a string for reserved characters
     let isInt = new RegExp("^[0-9]+$"); //regexp that tests that a string only contains numbers.
     //FUNCTIONS
-    //function for testing if a paramArray item contains an invalid field or unsafe character
+    //function for testing if a paramArray item contains an invalid field or reserved character
     let testKeyVal = (key, value)=>{
       let keyVal = value.split(":");
-      if (!validFields.includes(keyVal[0]) || !regExp.test(keyVal[0]) || !regExp.test(keyVal[1])){
+      if (!validFields.includes(keyVal[0]) || regExp.test(keyVal[0]) || regExp.test(keyVal[1])){
         let obj = {};
         obj[key] = queryParams[key].replace(`${keyVal[0]}:${keyVal[1]},`, '');
         this.transitionTo({queryParams:obj});
       }
     };
-    //VALIDATIONS FOR QUERYPARAMS
+    //VALIDATIONS FOR QUERY PARAMS
     for (const key in queryParams){
       if (queryParams.hasOwnProperty(key)){
         //special validation rules for serialized params
@@ -40,8 +40,8 @@ export default Ember.Route.extend({
             this.transitionTo({queryParams:obj});
           }
         } else { //validations for any other param
-          //if the param contains anything other than letters, numbers, or spaces...
-          if (!regExp.test(queryParams[key])){
+          //if the param contains a reserved character...
+          if (regExp.test(queryParams[key])){
             //reset this param to be blank and reload.
             let obj = {};
             obj[key] = '';
@@ -97,6 +97,7 @@ export default Ember.Route.extend({
     //adds the api key and field set to the params to be sent to the API
     params.api_key = 'apikey';
     params.fields = 'all';
+    params.facets_per_page = 100;
     //adds facets to params
     let facets = this.controllerFor('search').get('recordFacets');
     if(facets.length > 0){
