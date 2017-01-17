@@ -20,14 +20,20 @@ const FacetLinkComponent = Ember.Component.extend({
     //adds this facet to current param
     addFacet(){
       let newParam = `${this.get('param')}${this.get('facet')}:${this.get('title')},`;
-      let obj = { and: newParam };
+      let obj = {
+        and: newParam,
+        page: 1 //return to first page, since results are changing.
+      };
       this.get('onChange')(obj);
     },
     //removes this facet from current param
     removeFacet(){
       let facetStr = `${this.get('facet')}:${this.get('title')},`;
       let newParam = this.get('param').replace(facetStr, '');
-      let obj = { and: newParam };
+      let obj = {
+        and: newParam,
+        page: 1 //return to first page, since results are changing.
+      };
       this.get('onChange')(obj);
     }
   }

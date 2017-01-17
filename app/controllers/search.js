@@ -45,7 +45,6 @@ export default Ember.Controller.extend({
     //accepts object containing key/value pairs
     //where the key is a param name, and the value is its value
     updateParams(obj){
-      console.log(obj);
       for (const key in obj){
         if (!obj.hasOwnProperty(key)) {continue;}
         this.set(key, obj[key]);
