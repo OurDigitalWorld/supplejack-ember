@@ -4,13 +4,13 @@ export default Ember.Route.extend({
 
   beforeModel(transition){
     //VARIABLE DEFINITIONS
-    let queryParams = transition.queryParams;
-    let validFields = this.controllerFor('search').get('recordValues'); //array of all possible field values
-    let regExp = new RegExp(/[`~,.<>;':"/[\]|{}=+\@\!]/,"g"); //regexp that tests a string for reserved characters
-    let isInt = new RegExp("^[0-9]+$"); //regexp that tests that a string only contains numbers.
+    const queryParams = transition.queryParams;
+    const validFields = this.controllerFor('search').get('recordValues'); //array of all possible field values
+    const regExp = new RegExp(/[`~,.<>;':"/[\]|{}=+\@\!]/,"g"); //regexp that tests a string for reserved characters
+    const isInt = new RegExp("^[0-9]+$"); //regexp that tests that a string only contains numbers.
     //FUNCTIONS
     //function for testing if a paramArray item contains an invalid field or reserved character
-    let testKeyVal = (key, value)=>{
+    const testKeyVal = (key, value)=>{
       let keyVal = value.split(":");
       if (!validFields.includes(keyVal[0]) || regExp.test(keyVal[0]) || regExp.test(keyVal[1])){
         let obj = {};
@@ -54,12 +54,12 @@ export default Ember.Route.extend({
   model(params){
     //FUNCTIONS
     //function for returning the key from a paramArray item
-    let getKey = (value)=>{
+    const getKey = (value)=>{
       let keyVal = value.split(":");
       return keyVal[0];
     };
     //function for returning the value from a paramArray item
-    let getVal = (value)=>{
+    const getVal = (value)=>{
       let keyVal = value.split(":");
       return keyVal[1];
     };
