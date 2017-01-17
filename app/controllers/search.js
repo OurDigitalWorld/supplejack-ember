@@ -5,6 +5,8 @@ export default Ember.Controller.extend({
   page: 1,
   text: '',
   per_page: '20',
+  //note: and/or/without accept serialized data in the following format:
+  //"facet_field:Text to be Filtered,facet_field:Another Filter,"
   and: '',
   or: '',
   without: '',
@@ -29,7 +31,6 @@ export default Ember.Controller.extend({
   ],
 
   //all record fields that are a facet. Stringified to send to model.
-
   recordFacets: Ember.computed('recordFields.[]', function(){
     let facetArray = this.get('recordFields').filterBy('facet', true);
     let facetString = '';
@@ -38,6 +39,15 @@ export default Ember.Controller.extend({
     });
     facetString = facetString.slice(0,-1);
     return facetString;
+  }),
+
+  //array of all recordFields values
+  recordValues: Ember.computed('recordFields.[]', function(){
+    let valueArray = [];
+    this.get('recordFields').forEach((record)=>{
+      valueArray.push(record.value);
+    });
+    return valueArray;
   }),
 
   actions: {

@@ -12,9 +12,7 @@ onChange: action to be executed when queryParams are changed by this component.
     <ul>
       {{#each-in options as |title results|}}
         <li>
-          {{#facet-link facet title param onChange=(action onChange)}}
-            {{title}}
-          {{/facet-link}}: {{results}}
+          {{facet-link facet title results param onChange=(action onChange)}}
         </li>
       {{/each-in}}
     </ul>

@@ -1,12 +1,15 @@
 import Ember from 'ember';
 
 const FacetLinkComponent = Ember.Component.extend({
+  //when component is rendered, have it check what state it should be in
   didReceiveAttrs(){
     this._super(...arguments);
     this.send('setState');
   },
+  //tagless component
+  tagName: '',
+  //component state
   facetInUse: false,
-
   actions: {
     //if facet already exists, set facetInUse to true.  Otherwise, set to false.
     setState(){
@@ -40,7 +43,7 @@ const FacetLinkComponent = Ember.Component.extend({
 });
 
 FacetLinkComponent.reopenClass({
-  positionalParams: ['facet', 'title', 'param']
+  positionalParams: ['facet', 'title', 'results', 'param']
 });
 
 export default FacetLinkComponent;

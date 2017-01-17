@@ -1,4 +1,4 @@
-{{search-searchbar fields=recordFields onChange=(action "updateParams")}}
+{{search-searchbar fields=recordFields param=text onChange=(action "updateParams")}}
 {{search-pagination meta=model.meta onChange=(action "updateParams")}}
 {{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
 {{#each model as |item|}}
