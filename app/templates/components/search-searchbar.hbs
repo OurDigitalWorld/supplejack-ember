@@ -1,3 +1,11 @@
+{{!--HOW TO USE
+Add this to your template to display the searchbar and advanced search panel.
+Syntax:
+{{search-searchbar fields=recordFields onChange=(action "updateParams")}}
+fields: an array of objects containing the model's DS.Attrs as 'value' and a human-readable version as 'title'
+an object containing pagination metadata for current model (results_count, page, and per_page)
+onChange: action to be executed when queryParams are changed by this component.
+--}}
 <label for="searchbar-search" class="sr-only">Search:</label>
 
 <form method="post" {{action "executeSearch" searchParams on="submit"}}>

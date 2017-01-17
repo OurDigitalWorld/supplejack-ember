@@ -29,6 +29,7 @@ export default Ember.Controller.extend({
   ],
 
   //all record fields that are a facet. Stringified to send to model.
+
   recordFacets: Ember.computed('recordFields.[]', function(){
     let facetArray = this.get('recordFields').filterBy('facet', true);
     let facetString = '';
@@ -39,12 +40,12 @@ export default Ember.Controller.extend({
     return facetString;
   }),
 
-
   actions: {
     //updates queryParams
     //accepts object containing key/value pairs
     //where the key is a param name, and the value is its value
     updateParams(obj){
+      console.log(obj);
       for (const key in obj){
         if (!obj.hasOwnProperty(key)) {continue;}
         this.set(key, obj[key]);

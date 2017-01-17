@@ -1,0 +1,15 @@
+{{!--HOW TO USE
+This is part of the search-facets template for displaying a link for adding or removing an individual facet.
+Syntax:
+{{#facet-link facet title param onChange=(action onChange)}}Link Text{{/facet-link}}
+facet: the variable for facet type (eg 'subject')
+title: the variable for the specific facet value (eg 'Coal Miners')
+param: the variable for the queryParam that allows "and" facet filtering
+onChange=(action onChange): bubbles actions performed by this component up without touching them.
+--}}
+{{#if facetInUse}}
+  <strong>{{yield}}</strong> <a href {{action "removeFacet"}}>(remove)</a>
+{{else}}
+  <a href {{action "addFacet"}}>{{yield}}</a>
+{{/if}}
+
