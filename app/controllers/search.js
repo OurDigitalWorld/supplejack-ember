@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
 
   //all record fields that are a facet. Stringified to send to model.
   recordFacets: Ember.computed('recordFields.[]', function(){
-    let facetArray = this.get('recordFields').filterBy('facet', true);
+    const facetArray = this.get('recordFields').filterBy('facet', true);
     let facetString = '';
     facetArray.forEach((facet)=>{
       facetString += facet.value + ',';

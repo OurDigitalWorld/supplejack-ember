@@ -11,7 +11,7 @@ export default Ember.Route.extend({
     //FUNCTIONS
     //function for testing if a paramArray item contains an invalid field or reserved character
     const testKeyVal = (key, value)=>{
-      let keyVal = value.split(":");
+      const keyVal = value.split(":");
       if (!validFields.includes(keyVal[0]) || regExp.test(keyVal[0]) || regExp.test(keyVal[1])){
         let obj = {};
         obj[key] = queryParams[key].replace(`${keyVal[0]}:${keyVal[1]},`, '');
@@ -24,14 +24,14 @@ export default Ember.Route.extend({
         //special validation rules for serialized params
         if ((key==="and")||(key==="or")||(key==="without")){
           if (typeof queryParams[key] !== "undefined" && queryParams[key].length > 0){
-            let paramArray = queryParams[key].split(",").slice(0,-1);
+            const paramArray = queryParams[key].split(",").slice(0,-1);
             //test each paramArray item for validity
             for (const value of paramArray){testKeyVal(key, value);}
           }
           //special validation rules for integer params
         } else if (key==="page" || key==="per_page") {
           //get default value from controller
-          let defaultVal = this.controllerFor('search').get(`${key}`);
+          const defaultVal = this.controllerFor('search').get(`${key}`);
           //if the param contains anything other than numbers...
           if (!isInt.test(queryParams[key])){
             //reset this param to default value and reload.
@@ -55,12 +55,12 @@ export default Ember.Route.extend({
     //FUNCTIONS
     //function for returning the key from a paramArray item
     const getKey = (value)=>{
-      let keyVal = value.split(":");
+      const keyVal = value.split(":");
       return keyVal[0];
     };
     //function for returning the value from a paramArray item
     const getVal = (value)=>{
-      let keyVal = value.split(":");
+      const keyVal = value.split(":");
       return keyVal[1];
     };
     //USER EDITABLE PARAMS (from queryParams)
@@ -74,7 +74,7 @@ export default Ember.Route.extend({
       if ((key === "and")||(key === "or")||(key === "without")){
         if (typeof params[key] !== "undefined" && params[key].length > 0){
           //deserialize param into an array
-          let paramArray = params[key].split(",").slice(0,-1);
+          const paramArray = params[key].split(",").slice(0,-1);
           //create a set of unique keys among params
           let keySet = new Set();
           for (const value of paramArray){keySet.add(getKey(value));}
@@ -103,7 +103,7 @@ export default Ember.Route.extend({
     params.fields = 'all';
     params.facets_per_page = 100;
     //adds facets to params
-    let facets = this.controllerFor('search').get('recordFacets');
+    const facets = this.controllerFor('search').get('recordFacets');
     if(facets.length > 0){
       params.facets = facets;
     }

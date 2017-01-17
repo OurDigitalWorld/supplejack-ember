@@ -18,7 +18,7 @@ export default Ember.Component.extend({
   }),
   //computed value of the end current offset
   offsetLast: Ember.computed('meta', 'offset', function(){
-    let potentialOffsetLast = this.get('offset') + this.get('meta.per_page') - 1;
+    const potentialOffsetLast = this.get('offset') + this.get('meta.per_page') - 1;
     //if there are more results than what will be displayed, return offset + per_page
     if (this.get('meta.result_count') > potentialOffsetLast){
       return potentialOffsetLast;
@@ -39,10 +39,10 @@ export default Ember.Component.extend({
     selectOffset(value){
       this.set('offsetAmount', value);
       //determines what the new page should be to keep same results on page
-      let firstResult = ((this.get('meta.page') - 1 ) * this.get('meta.per_page')) + 1;
-      let newPage = Math.ceil(firstResult / value);
+      const firstResult = ((this.get('meta.page') - 1 ) * this.get('meta.per_page')) + 1;
+      const newPage = Math.ceil(firstResult / value);
       //creates object to send up to the updateParams function in the controller
-      let obj = {
+      const obj = {
         page: newPage,
         per_page: value,
       };
