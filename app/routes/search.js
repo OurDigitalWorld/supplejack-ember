@@ -86,7 +86,11 @@ export default Ember.Route.extend({
             }
             //if a unique key has multiple values, send those values as an array
             //if a unique key has one value, send that value as a string
-            (array.length > 1) ? params[`and[${uniqueKey}]`] = array : params[`and[${uniqueKey}]`] = array[0];
+            if (array.length > 1){
+              params[`and[${uniqueKey}]`] = array;
+            } else {
+              params[`and[${uniqueKey}]`] = array[0];
+            }
           }
         }
         //delete the original param
