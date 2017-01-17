@@ -10,9 +10,10 @@ export default Ember.Route.extend({
         delete params[key];
       }
     }
+
     //SERIALIZE "AND", "OR", and "WITHOUT" PARAMS
     //Note:  need to alter function to work for all three params that need serialization
-    if (typeof params.and != "undefined" && params.and.length > 0){
+    if (typeof params.and !== "undefined" && params.and.length > 0){
       let andArray = params.and.split(",").slice(0,-1);
       //create set of unique "and" parameters"
       let keys = new Set();
@@ -53,10 +54,12 @@ export default Ember.Route.extend({
     params.api_key = 'apikey';
     params.fields = 'all';
     //adds facets to params
+
     let facets = this.controllerFor('search').get('recordFacets');
     if(facets.length > 0){
       params.facets = facets;
     }
+
     //MODEL RETURN
     // console.log(params);
     //fetches the model from the API with given params
@@ -74,11 +77,5 @@ export default Ember.Route.extend({
     and: {refreshModel: true},
     or: {refreshModel: true},
     without: {refreshModel: true}
-  },
-
-  serializeQueryParam: function(value, urlKey, defaultValueType){
-    if (defaultValueType === 'array'){
-      return value;
-    }
   }
 });

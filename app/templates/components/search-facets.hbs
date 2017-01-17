@@ -1,13 +1,20 @@
+{{!--HOW TO USE
+Add this to your template to display facet search options.
+Syntax:
+{{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
+meta: an object containing model metadata (requires 'facets')
+param: the queryParam that allows for "and" facet filtering.
+onChange: action to be executed when queryParams are changed by this component.
+--}}
 <ul>
 {{#each-in meta.facets as |facet options|}}
   <li>{{facet}}
     <ul>
       {{#each-in options as |title results|}}
         <li>
-          {{#link-to (query-params and=(concat facet ":" title ","))}}
+          {{#facet-link facet title param onChange=(action onChange)}}
             {{title}}
-          {{/link-to}}
-          : {{results}}
+          {{/facet-link}}: {{results}}
         </li>
       {{/each-in}}
     </ul>
