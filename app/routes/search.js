@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     //VARIABLE DEFINITIONS
     const queryParams = transition.queryParams;
     const validFields = this.controllerFor('search').get('recordValues'); //array of all possible field values
-    const regExp = new RegExp(/[`~,.<>;':"/[\]|{}=+\@\!]/,"g"); //regexp that tests a string for reserved characters
+    const regExp = new RegExp(/[`,.<>;':"/[\]|{}=+\@\!]/,"g"); //regexp that tests a string for reserved characters
     const isInt = new RegExp("^[0-9]+$"); //regexp that tests that a string only contains numbers.
     //FUNCTIONS
     //function for testing if a paramArray item contains an invalid field or reserved character

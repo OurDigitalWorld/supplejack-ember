@@ -1,9 +1,10 @@
 {{!--HOW TO USE
 Add this to your template to display the searchbar and advanced search panel.
 Syntax:
-{{search-searchbar fields=recordFields onChange=(action "updateParams")}}
+{{search-searchbar fields=recordFields param=text onChange=(action "updateParams")}}
 fields: an array of objects containing the model's DS.Attrs as 'value' and a human-readable version as 'title'
 an object containing pagination metadata for current model (results_count, page, and per_page)
+param: variable for the queryparam that represents searches -- allows current value to be populated into search bar on page load
 onChange: action to be executed when queryParams are changed by this component.
 --}}
 <label for="searchbar-search" class="sr-only">Search:</label>
@@ -14,6 +15,20 @@ onChange: action to be executed when queryParams are changed by this component.
     <button type="submit">Search</button>
   </div>
   {{#if showAdvancedSearch}}
+    {{!--Note: State of advanced search
+    On an advanced search with only one facet value, wildcards may be used, so searches could be slightly vague.
+    (eg, a search for AND=subject:Coast* will return results for any subject that starts with "Coast".)
+    Note: these searches are case sensitive, and the facet must start with the given string.
+    Because of this, the ability to successfully return search results for advanced searches seems fairly limited.
+
+    It may be best to rely on facet filters for most advanced search, with some exceptions:
+    - If we wanted, we could use a slider for indicating item date.
+    - If any facets are deemed significant for formulating a search, like institution, CC-type, etc, we can move these
+    facets out of the lists they're currently in, and into select boxes.  However, they would function fundamentally
+    the same as the current facets component.
+
+    A useful resource: https://lucene.apache.org/core/2_9_4/queryparsersyntax.html
+
     <div>
       <select>
         {{#each fields as |field|}}
@@ -28,6 +43,9 @@ onChange: action to be executed when queryParams are changed by this component.
       OR
       {{input}}
     </div>
+    --}}
   {{/if}}
+  {{!--
   <button type="button" {{action "toggleAdvancedSearch"}}>{{if showAdvancedSearch 'Hide '}}Advanced Search</button>
+  --}}
 </form>
