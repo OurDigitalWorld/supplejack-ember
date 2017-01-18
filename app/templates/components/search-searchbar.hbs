@@ -13,6 +13,18 @@ onChange: action to be executed when queryParams are changed by this component.
   <div>
     {{input value=searchParams.text}}
     <button type="submit">Search</button>
+    {{!--Note: Search Syntax
+      Coast Salish -> searches anything containing both "Coast" and "Salish"
+      "Coast Salish" -> searches anything for the specific phrase, "Coast Salish"
+      Salish OR Wellington -> anything with "Salish" or anything with "Wellington"
+      Salish~ -> includes anything with a word similar to "Salish"
+      Salish NOT Wellington -> includes anything with "Salish", but not if it also contains "Wellington"
+      Sal* -> includes any results containing a word starting with "Sal"
+      Wom*n -> includes "Woman" or "Women"
+
+      Do we build advanced search features to visually allow for these different methods, or should we just provide a
+      box that explains the syntax to users?
+    --}}
   </div>
   {{#if showAdvancedSearch}}
     {{!--Note: State of advanced search
