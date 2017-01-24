@@ -9,6 +9,8 @@ display (optional):
   "links" : displays links for changing pages
   "both" (default) : displays both offset and links.
 --}}
+
+{{!--------OFFSET--------}}
 {{#if (or (eq display "offset") (eq display "both"))}}
   <div class="pagination-offset">
     Viewing {{offset}}-{{offsetLast}} of {{meta.result_count}} results.
@@ -22,74 +24,57 @@ display (optional):
     </select>
   </div>
 {{/if}}
+
+{{!--------PAGINATION BAR--------}}
 {{#if (or (eq display "links") (eq display "both"))}}
-  <div class="pagination-links">
-    {{! previous page link}}
-    {{#if (gt meta.page 1)}}
-      {{#link-to (query-params page=(sub meta.page 1))}}
-        &lt;&lt;
+  <div class="pagination">
+    {{! previous page button}}
+    <li class={{if (eq meta.page 1) "disabled"}}>
+      {{#link-to (query-params page=(sub meta.page 1)) disabled=(eq meta.page 1)}}
+        <span class="aria-hidden">&lt;&lt;</span>
+        <span class="sr-only">previous</span>
       {{/link-to}}
-      &nbsp;&nbsp;
+    </li>
+    {{! first page}}
+    <li class={{if (eq meta.page 1) "active"}}>
+    {{#link-to (query-params page=1)}}
+      1
+    {{/link-to}}
+    </li>
+    {{! first ellipse}}
+    {{#if displayStartEllipse}}
+      <li class="disabled">
+        <span>...</span>
+      </li>
     {{/if}}
-    {{! first page }}
-    {{#if (gt meta.page 2)}}
-      {{#link-to (query-params page=1)}}1{{/link-to}},
-    {{/if}}
-    {{! page - 10}}
-    {{#if (gt meta.page 11)}}
-      {{#link-to (query-params page=(sub meta.page 10))}}
-        {{sub meta.page 10}}
-      {{/link-to}},
-    {{/if}}
-    {{! page - 5}}
-    {{#if (gt meta.page 6)}}
-      {{#link-to (query-params page=(sub meta.page 5))}}
-        {{sub meta.page 5}}
-      {{/link-to}},
-    {{/if}}
-    {{! elipses if page is greater than 3}}
-    {{#if (gt meta.page 3)}}...{{/if}}
-    {{! page - 1}}
-    {{#if (gt meta.page 1)}}
-      {{#link-to (query-params page=(sub meta.page 1))}}
-        {{sub meta.page 1}}
-      {{/link-to}},
-    {{/if}}
-    {{! displays current page}}
-    <strong>{{meta.page}}</strong>,
-    {{! page + 1}}
-    {{#if (gt lastPage meta.page)}}
-      {{#link-to (query-params page=(add meta.page 1))}}
-        {{add meta.page 1}}
-      {{/link-to}},
-    {{/if}}
-    {{! elipses if last page is greater than page + 2}}
-    {{#if (gt lastPage (add meta.page 2))}}...{{/if}}
-    {{! page + 5}}
-    {{#if (gt lastPage (add meta.page 5))}}
-      {{#link-to (query-params page=(add meta.page 5))}}
-        {{add meta.page 5}}
-      {{/link-to}},
-    {{/if}}
-    {{! page + 10}}
-    {{#if (gt lastPage (add meta.page 10))}}
-      {{#link-to (query-params page=(add meta.page 10))}}
-        {{add meta.page 10}}
-      {{/link-to}},
+    {{! all the middle pages}}
+    {{#each paginationLinks as |link|}}
+      <li class={{if link.isActive "active"}}>
+        {{#link-to (query-params page=link.page)}}
+          {{link.page}}
+        {{/link-to}}
+      </li>
+    {{/each}}
+    {{! second ellipse}}
+    {{#if displayEndEllipse}}
+      <li class="disabled">
+        <span>...</span>
+      </li>
     {{/if}}
     {{! last page}}
-    {{#if (gt lastPage (add meta.page 1))}}
-      {{#link-to (query-params page=lastPage)}}
-        {{lastPage}}
-      {{/link-to}}
+    {{#if (gt lastPage 1)}}
+      <li class={{if (eq meta.page lastPage) "active"}}>
+        {{#link-to (query-params page=lastPage)}}
+          {{lastPage}}
+        {{/link-to}}
+      </li>
     {{/if}}
-    {{! next page link}}
-    {{#if (gt lastPage meta.page)}}
-      &nbsp;&nbsp;
-      {{#link-to (query-params page=(add meta.page 1))}}
-        &gt;&gt;
+    {{! next page button}}
+    <li class={{if (eq meta.page lastPage) "disabled"}}>
+      {{#link-to (query-params page=(add meta.page 1)) disabled=(eq meta.page lastPage)}}
+        <span class="aria-hidden">&gt;&gt;</span>
+        <span class="sr-only">previous</span>
       {{/link-to}}
-    {{/if}}
+    </li>
   </div>
 {{/if}}
-
