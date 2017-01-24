@@ -7,12 +7,23 @@ an object containing pagination metadata for current model (results_count, page,
 param: variable for the queryparam that represents searches -- allows current value to be populated into search bar on page load
 onChange: action to be executed when queryParams are changed by this component.
 --}}
-<label for="searchbar-search" class="sr-only">Search:</label>
 
-<form method="post" {{action "executeSearch" searchParams on="submit"}}>
-  <div>
-    {{input value=searchParams.text}}
-    <button type="submit">Search</button>
+
+<form method="post" class="form-inline" {{action "executeSearch" searchParams on="submit"}}>
+  <div class="input-group" role="group" aria-label="Search">
+    <label for="searchbar-search" class="sr-only">Enter search text</label>
+    {{input
+      id="searchbar-search"
+      class="form-control"
+      value=searchParams.text
+    }}
+    <span class="input-group-btn">
+      <label for="search-button" class="sr-only">Execute search</label>
+      <button id="search-button" class="btn btn-primary" type="submit">
+        <span class="glyphicon glyphicon-search"></span>
+      </button>
+    </span>
+
     {{!--Note: Search Syntax
       Coast Salish -> searches anything containing both "Coast" and "Salish"
       "Coast Salish" -> searches anything for the specific phrase, "Coast Salish"
