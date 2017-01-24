@@ -7,15 +7,7 @@ param: the queryParam that allows for "and" facet filtering.
 onChange: action to be executed when queryParams are changed by this component.
 --}}
 <ul>
-{{#each-in meta.facets as |facet options|}}
-  <li>{{facet}}
-    <ul>
-      {{#each-in options as |title results|}}
-        <li>
-          {{facet-link facet title results param onChange=(action onChange)}}
-        </li>
-      {{/each-in}}
-    </ul>
-  </li>
-{{/each-in}}
+  {{#each-in meta.facets as |facet options|}}
+    {{facet-category facet options param onChange=(action onChange)}}
+  {{/each-in}}
 </ul>

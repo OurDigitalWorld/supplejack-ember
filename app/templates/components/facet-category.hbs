@@ -1,0 +1,14 @@
+<li>{{facet}}
+  <ul>
+    {{#each-in filteredOptions as |title results|}}
+      <li>
+        {{facet-link facet title results param onChange=(action onChange)}}
+      </li>
+    {{/each-in}}
+    {{#if hasHidden}}
+      <li>
+        <a {{action "toggleShowAll"}}>{{if showAll "show fewer" "show all"}}</a>
+      </li>
+    {{/if}}
+  </ul>
+</li>
