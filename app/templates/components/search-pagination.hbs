@@ -11,11 +11,12 @@ display (optional):
 --}}
 
 {{!--------OFFSET--------}}
+
 {{#if (or (eq display "offset") (eq display "both"))}}
-  <div class="pagination-offset">
+  <div class="pagination-offset form-inline">
     Viewing {{offset}}-{{offsetLast}} of {{meta.result_count}} results.
     <label for="results-per-page">Results per page</label>
-    <select onchange={{action "selectOffset" value="target.value"}}>
+    <select id="results-per-page" class="form-control input-sm" onchange={{action "selectOffset" value="target.value"}}>
       {{#each offsetOptions as |option|}}
         <option value={{option.value}} selected={{eq offsetAmount option.value}}>
           {{option.value}}
