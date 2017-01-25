@@ -49,7 +49,7 @@ const FacetCategoryComponent = Ember.Component.extend({
         }
       }
       //if everything from the original set is in the new set, don't show a "show more" button
-      if (JSON.stringify(options) == JSON.stringify(result)){
+      if (JSON.stringify(options) === JSON.stringify(result)){
         this.toggleProperty('hasHidden');
       }
       return result;

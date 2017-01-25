@@ -1,0 +1,82 @@
+@import "ember-bootstrap/bootstrap";
+
+$aside-width: 260px;
+$standard-margin: 10px;
+
+//--------FONTS--------
+
+//--------LAYOUT--------
+
+html, body, body>.ember-view {height:100%;}
+#site-container{
+  min-height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+header {
+  display: flex;
+  align-items: center;
+  margin-bottom: $standard-margin;
+  #page-title{
+    min-width: $aside-width + (2 * $standard-margin);
+  }
+  #search-bar{
+    margin: $standard-margin;
+    max-width: 800px;
+  }
+}
+main {
+  flex: 1;
+  display: flex;
+  > * {
+    margin: 0 $standard-margin;
+  }
+}
+
+//--------STYLE--------
+
+
+
+//styling for search facet filters
+aside#search-facets{
+  min-width: $aside-width;
+  max-width: $aside-width;
+  width: $aside-width;
+  order: -1;
+  ul.facet-categories {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    li.facet-category{
+      .facet-category-name{
+        text-transform: capitalize;
+        font-weight: bold;
+      }
+      li.show-more{
+        cursor: pointer;
+      }
+    }
+    ul.facet-items {
+      list-style-type: none;
+      padding: 0 $standard-margin;
+
+    }
+  }
+}
+
+//pagination dropdown
+.ellipse-dropdown{
+  ul.dropdown-menu{
+    min-width: 0;
+    li > a:hover {
+      background-color: $btn-primary-bg;
+      color: white;
+    }
+  }
+}

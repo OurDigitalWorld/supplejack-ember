@@ -1,7 +1,37 @@
-{{search-searchbar fields=recordFields param=text onChange=(action "updateParams")}}
-{{search-pagination meta=model.meta onChange=(action "updateParams")}}
-{{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
-{{#each model as |item|}}
-  <strong><a href={{item.source_url}}>{{item.title}}</a></strong> {{item.description}} <br />
-{{/each}}
+<div id="site-container">
+  <header>
+    <section id="page-title">
+      {{!link allows you to reset the query params, which is useful because they're normally sticky in Ember}}
+     {{#link-to "search" invokeAction=(action "updateParams" resetParams)}}
+       <h1>Supplejack Client</h1>
+     {{/link-to}}
+    </section>
+    <section id="search-bar">
+      {{search-searchbar fields=recordFields param=text onChange=(action "updateParams")}}
+    </section>
+  </header>
+  <main>
+    <section id="search-results">
+      <h2 class="sr-only">Search Results</h2>
+      {{search-pagination meta=model.meta onChange=(action "updateParams") display="offset"}}
+      {{#each model as |item|}}
+        <article class="search-result">
+          <h3><a href={{item.source_url}}>{{item.title}}</a></h3>
+          <p>{{item.description}}</p>
+        </article>
+      {{/each}}
+      {{search-pagination meta=model.meta onChange=(action "updateParams") display="links"}}
+    </section>
+    <aside id="search-facets">
+      {{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
+    </aside>
+  </main>
+  <footer>I'm a footer! Hi!</footer>
+</div>
+
+
+
+
+
+
 

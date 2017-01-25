@@ -56,23 +56,57 @@ export default Ember.Component.extend({
     const getPage = (init, max)=>{
       for (let i=init; i<=max; i++){
         let link = {};
-        if (i === current) link.isActive = true;
+        if (i === current) {link.isActive = true;}
         link.page = i;
         output.push(link);
       }
     };
     //if there are 11 or fewer pages
     // get pages 2 to (last -1)
-    if (last <= 11) getPage(2, (last-1));
+    if (last <= 11) {getPage(2, (last-1));}
       //if the current page is less than 7
       //get pages 2 to 9
-    else if (current < 7) getPage(2, 9);
+    else if (current < 7) {getPage(2, 9);}
       //if the current page is within 7 of the last page
       //get pages (last-9) to (last-1)
-    else if (current > (last - 6)) getPage((last-8),(last-1));
+    else if (current > (last - 6)) {getPage((last-8),(last-1));}
       //otherwise, just get the 3 pages on either side of the current page
-    else getPage((current-3),(current+3));
+    else {getPage((current-3),(current+3));}
 
+    return output;
+  }),
+  //returns object containing all the pages hidden by first ellipse
+  startEllipseRange: Ember.computed('paginationLinks', function(){
+    let output = [];
+    let pageSet = new Set();
+    //get lowest value from paginationLinks
+    for (const obj of this.get('paginationLinks')){
+      pageSet.add(obj.page);
+    }
+    const lowestPage = Math.min(...pageSet);
+    //get range of values between 2 and lowest val - 1
+    for (let i=2; i<lowestPage; i++){
+      let link = {};
+      link.page = i;
+      output.push(link);
+    }
+    return output;
+  }),
+  //returns object containing all the pages hidden by the second ellipse
+  endEllipseRange: Ember.computed('paginationLinks', 'lastPage', function(){
+    let output = [];
+    let pageSet = new Set();
+    //get high value from paginationLinks
+    for (const obj of this.get('paginationLinks')){
+      pageSet.add(obj.page);
+    }
+    const highestPage = Math.max(...pageSet) + 1;
+    //get range of values between highest value +1 and last page -1
+    for (let i=highestPage; i<this.get('lastPage'); i++){
+      let link = {};
+      link.page = i;
+      output.push(link);
+    }
     return output;
   }),
   actions: {

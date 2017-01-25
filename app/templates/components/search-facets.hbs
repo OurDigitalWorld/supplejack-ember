@@ -6,7 +6,7 @@ meta: an object containing model metadata (requires 'facets')
 param: the queryParam that allows for "and" facet filtering.
 onChange: action to be executed when queryParams are changed by this component.
 --}}
-<ul>
+<ul class="facet-categories">
   {{#each-in meta.facets as |facet options|}}
     {{facet-category facet options param onChange=(action onChange)}}
   {{/each-in}}

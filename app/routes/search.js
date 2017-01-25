@@ -1,14 +1,20 @@
 import Ember from 'ember';
+import ResetScrollMixin from 'ember-cli-reset-scroll';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ResetScrollMixin, {
+  //fun fact: Ember uses the Glimmer 2 rendering engine, which dynamically re-renders
+  //  only DOM elements that have changed on a page after each action.
+  //  This is really awesome and really efficient, but a side effect of this is
+  //  that the page stays scrolled to whatever position it's currently at, even when
+  //  you click a link to another section of your site.
+  //This mixin manually scrolls you back to the top whenever this route reloads.
+  resetScroll: undefined,
 
   beforeModel(transition){
-    //VARIABLE DEFINITIONS
     const queryParams = transition.queryParams;
     const validFields = this.controllerFor('search').get('recordValues'); //array of all possible field values
     const regExp = new RegExp(/[`,.<>;':"/[\]|{}=+\@\!]/,"g"); //regexp that tests a string for reserved characters
     const isInt = new RegExp("^[0-9]+$"); //regexp that tests that a string only contains numbers.
-    //FUNCTIONS
     //function for testing if a paramArray item contains an invalid field or reserved character
     const testKeyVal = (key, value)=>{
       const keyVal = value.split(":");
@@ -52,7 +58,6 @@ export default Ember.Route.extend({
     }
   },
   model(params){
-    //FUNCTIONS
     //function for returning the key from a paramArray item
     const getKey = (value)=>{
       const keyVal = value.split(":");
@@ -100,6 +105,13 @@ export default Ember.Route.extend({
     //SYSTEM-BASED PARAMS (added here)
     //adds the api key and field set to the params to be sent to the API
     params.api_key = 'apikey';
+
+    //potential feature to add here: Query the store for whatever is searched.
+    // if no results are returned, add "~" to the end of each word in the 'text' param.
+    // Possibly add some sort of flash message addon so that we can display a flash
+    // message under search results informing user that we've done this.
+
+
     params.fields = 'all';
     params.facets_per_page = 100;
     //adds facets to params

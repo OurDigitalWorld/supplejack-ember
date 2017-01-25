@@ -44,9 +44,18 @@ display (optional):
     </li>
     {{! first ellipse}}
     {{#if displayStartEllipse}}
-      <li class="disabled">
-        <span>...</span>
-      </li>
+      {{#bs-dropdown direction="up" tagName="li" classNames="ellipse-dropdown" as |dd|}}
+        {{#dd.toggle}}...{{/dd.toggle}}
+        {{#dd.menu as |ddm|}}
+          {{#each startEllipseRange as |link|}}
+            {{#ddm.item}}
+              {{#link-to (query-params page=link.page)}}
+                {{link.page}}
+              {{/link-to}}
+            {{/ddm.item}}
+          {{/each}}
+        {{/dd.menu}}
+      {{/bs-dropdown}}
     {{/if}}
     {{! all the middle pages}}
     {{#each paginationLinks as |link|}}
@@ -58,9 +67,18 @@ display (optional):
     {{/each}}
     {{! second ellipse}}
     {{#if displayEndEllipse}}
-      <li class="disabled">
-        <span>...</span>
-      </li>
+      {{#bs-dropdown direction="up" tagName="li" classNames="ellipse-dropdown" as |dd|}}
+        {{#dd.toggle}}...{{/dd.toggle}}
+        {{#dd.menu as |ddm|}}
+          {{#each endEllipseRange as |link|}}
+            {{#ddm.item}}
+              {{#link-to (query-params page=link.page)}}
+                {{link.page}}
+              {{/link-to}}
+            {{/ddm.item}}
+          {{/each}}
+        {{/dd.menu}}
+      {{/bs-dropdown}}
     {{/if}}
     {{! last page}}
     {{#if (gt lastPage 1)}}
