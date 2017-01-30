@@ -13,14 +13,14 @@ export default Ember.Route.extend(ResetScrollMixin, {
   beforeModel(transition){
     const queryParams = transition.queryParams;
     const validFields = this.controllerFor('search').get('recordValues'); //array of all possible field values
-    const regExp = new RegExp(/[`,.<>;':"/[\]|{}=+\@\!]/,"g"); //regexp that tests a string for reserved characters
+    const regExp = new RegExp(/[`<>:;'"/[\]|{}=+\@\!]/,"g"); //regexp that tests a string for reserved characters
     const isInt = new RegExp("^[0-9]+$"); //regexp that tests that a string only contains numbers.
     //function for testing if a paramArray item contains an invalid field or reserved character
     const testKeyVal = (key, value)=>{
       const keyVal = value.split(":");
       if (!validFields.includes(keyVal[0]) || regExp.test(keyVal[0]) || regExp.test(keyVal[1])){
         let obj = {};
-        obj[key] = queryParams[key].replace(`${keyVal[0]}:${keyVal[1]},`, '');
+        obj[key] = queryParams[key].replace(`${keyVal[0]}:${keyVal[1]};`, '');
         this.transitionTo({queryParams:obj});
       }
     };
@@ -30,7 +30,7 @@ export default Ember.Route.extend(ResetScrollMixin, {
         //special validation rules for serialized params
         if ((key==="and")||(key==="or")||(key==="without")){
           if (typeof queryParams[key] !== "undefined" && queryParams[key].length > 0){
-            const paramArray = queryParams[key].split(",").slice(0,-1);
+            const paramArray = queryParams[key].split(";").slice(0,-1);
             //test each paramArray item for validity
             for (const value of paramArray){testKeyVal(key, value);}
           }
@@ -79,7 +79,7 @@ export default Ember.Route.extend(ResetScrollMixin, {
       if ((key === "and")||(key === "or")||(key === "without")){
         if (typeof params[key] !== "undefined" && params[key].length > 0){
           //deserialize param into an array
-          const paramArray = params[key].split(",").slice(0,-1);
+          const paramArray = params[key].split(";").slice(0,-1);
           //create a set of unique keys among params
           let keySet = new Set();
           for (const value of paramArray){keySet.add(getKey(value));}

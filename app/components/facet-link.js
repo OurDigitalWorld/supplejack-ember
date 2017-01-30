@@ -13,7 +13,7 @@ const FacetLinkComponent = Ember.Component.extend({
   actions: {
     //if facet already exists, set facetInUse to true.  Otherwise, set to false.
     setState(){
-      const facetStr = `${this.get('facet')}:${this.get('title')},`;
+      const facetStr = `${this.get('facet')}:${this.get('title')};`;
       if (this.get('param').includes(facetStr)){
         this.set('facetInUse', true);
       } else {
@@ -22,7 +22,7 @@ const FacetLinkComponent = Ember.Component.extend({
     },
     //adds this facet to current param
     addFacet(){
-      const newParam = `${this.get('param')}${this.get('facet')}:${this.get('title')},`;
+      const newParam = `${this.get('param')}${this.get('facet')}:${this.get('title')};`;
       const obj = {
         and: newParam,
         page: 1 //return to first page, since results are changing.
@@ -31,7 +31,7 @@ const FacetLinkComponent = Ember.Component.extend({
     },
     //removes this facet from current param
     removeFacet(){
-      const facetStr = `${this.get('facet')}:${this.get('title')},`;
+      const facetStr = `${this.get('facet')}:${this.get('title')};`;
       const newParam = this.get('param').replace(facetStr, '');
       const obj = {
         and: newParam,

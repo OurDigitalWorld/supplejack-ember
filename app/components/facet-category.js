@@ -30,9 +30,10 @@ const FacetCategoryComponent = Ember.Component.extend({
         prev[cur] = (prev[cur] || 0) +1;
         return prev;
       }, {});
-      //if magnitude in filter does not have a count of 2, add magnitudes until it does.
+      //if magnitude in filter does not have a count of 5, add magnitudes until it does.
       let resultsCount = 0;
-      for (let i=0; resultsCount < 2; i++){
+      for (let i=0; resultsCount < 5; i++){
+        if (OoMsSet.size === 0){break;} //avoid infinite loops if there aren't enough things to display in a category
         //add highest value to magArray
         magArray.push(Math.max(...OoMsSet));
         resultsCount += OoMsCount[magArray[i]];
