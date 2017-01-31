@@ -15,16 +15,26 @@
       <h2 class="sr-only">Search Results</h2>
       {{search-pagination meta=model.meta onChange=(action "updateParams") display="offset"}}
       {{#each model as |item|}}
-        <article class="search-result">
-          <h3><a href={{item.source_url}}>{{item.title}}</a></h3>
-          <p>{{item.description}}</p>
-        </article>
+        {{search-result item=item}}
       {{/each}}
       {{search-pagination meta=model.meta onChange=(action "updateParams") display="links"}}
     </section>
     <aside id="search-facets">
-      {{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
+      {{#if (or screen.isMediumAndUp displayAside)}}
+        {{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
+        {{#if screen.isMediumAndDown}}
+          <button class="btn-block text-center btn-primary" {{action "toggleDisplayAside"}}>
+            Hide Filters <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+          </button>
+        {{/if}}
+      {{else}}
+        <button class="btn-block text-center btn-primary" {{action "toggleDisplayAside"}}>
+          Show Filters <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+        </button>
+      {{/if}}
     </aside>
+
+
   </main>
   <footer><a href="#" class="btn-block text-center btn-primary">return to top</a></footer>
 </div>

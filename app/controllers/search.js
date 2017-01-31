@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  screen: Ember.inject.service(),
+
   queryParams: ['page', 'text', 'per_page', 'and', 'or', 'without'],
   page: 1,
   text: '',
@@ -10,6 +12,8 @@ export default Ember.Controller.extend({
   and: '',
   or: '',
   without: '',
+  //hide aside by default on small screens
+  displayAside: false,
 
   //this object can be passed to updateParams to clear all set params.
   resetParams: {
@@ -37,7 +41,8 @@ export default Ember.Controller.extend({
     {value: 'creator', title: 'Creator'},
     {value: 'category', title: 'Category', facet: true},
     {value: 'language', title: 'Language', facet: true},
-    {value: 'publisher', title: 'Publisher', facet:true}
+    {value: 'publisher', title: 'Publisher', facet:true},
+    {value: 'thumbnail_url', title:'Thumbnail'}
   ],
 
   //all record fields that are a facet. Stringified to send to model.
@@ -69,6 +74,9 @@ export default Ember.Controller.extend({
         if (!obj.hasOwnProperty(key)) {continue;}
         this.set(key, obj[key]);
       }
+    },
+    toggleDisplayAside(){
+      this.toggleProperty('displayAside');
     }
   }
 });

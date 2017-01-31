@@ -1,45 +1,15 @@
+//define any colors based on this one
+//$brand-primary: green;
+
 @import "ember-bootstrap/bootstrap";
 
 $aside-width: 260px;
 $standard-margin: 10px;
-
-//--------FONTS--------
-
-//--------LAYOUT--------
-
-html, body, body>.ember-view {height:100%;}
-#site-container{
-  min-height: 100%;
-  display:flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: $standard-margin;
-  #page-title{
-    min-width: $aside-width + (2 * $standard-margin);
-  }
-  #search-bar{
-    margin: $standard-margin;
-    max-width: 800px;
-  }
-}
-main {
-  flex: 1;
-  display: flex;
-  > * {
-    margin: 0 $standard-margin;
-  }
-}
+$image-size: 150px;
 
 //--------STYLE--------
-
-
-
-//styling for search facet filters
-aside#search-facets{
+//search-facets, facet-category, facet-link
+aside{
   min-width: $aside-width;
   max-width: $aside-width;
   width: $aside-width;
@@ -65,18 +35,99 @@ aside#search-facets{
     ul.facet-items {
       list-style-type: none;
       padding: 0 $standard-margin;
-
     }
   }
 }
 
-//pagination dropdown
+//search-pagination
 .ellipse-dropdown{
   ul.dropdown-menu{
+    //limits size of dropdown menu to half the screen
     min-width: 0;
+    height: auto;
+    max-height: 50vh;
+    overflow-x: hidden;
     li > a:hover {
+      //gives consistent menu coloration
       background-color: $btn-primary-bg;
       color: white;
     }
+  }
+}
+
+//search-result
+.result-thumbnail {
+  padding: $standard-margin;
+  width: ($image-size + 2 * ($standard-margin));
+  > img{
+    max-height: $image-size;
+    max-width: $image-size;
+  }
+}
+
+//--------LAYOUT--------
+//includes responsive design triggers
+//placed last in this document to allow overwriting where needed
+
+html, body, body>.ember-view {height:100%;}
+#site-container{
+  min-height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+header {
+  display: flex;
+  align-items: center;
+  margin-bottom: $standard-margin;
+  #page-title{
+    min-width: $aside-width + (2 * $standard-margin);
+  }
+  #search-bar{
+    margin: $standard-margin;
+    max-width: 800px;
+  }
+  //allows search bar to wrap to new line on small screens
+  @media(max-width: $screen-md){
+    flex-wrap: wrap;
+  }
+}
+main {
+  flex: 1;
+  display: flex;
+  > * {
+    margin: 0 $standard-margin;
+    //switches margins on small screens
+    @media(max-width: $screen-md){
+      margin: $standard-margin 0;
+    }
+    > .search-result {
+      display: flex;
+    }
+  }
+  //let aside go above search results on small screens
+  @media(max-width: $screen-md){
+    flex-wrap: wrap;
+  }
+}
+aside {
+  @media(max-width: $screen-md){
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+  }
+}
+footer {
+  min-width: 100%;
+}
+//centers pagination elements on smaller screens
+.search-pagination {
+  display:flex;
+  @media(max-width: $screen-md){
+    justify-content: center;
+  }
+  //prevents pagination from wrapping on smaller screens
+  .pagination {
+    display:flex;
   }
 }

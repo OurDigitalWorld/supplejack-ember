@@ -13,6 +13,7 @@ export default DS.Model.extend({
   language: DS.attr(),
   rights: DS.attr(),
   publisher: DS.attr(),
+  thumbnail_url: DS.attr(),
 
   //note: Available metadata for this model (access in template through model.meta)
   // result_count, per_page, page, facets

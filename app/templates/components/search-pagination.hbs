@@ -28,7 +28,7 @@ display (optional):
 
 {{!--------PAGINATION BAR--------}}
 {{#if (or (eq display "links") (eq display "both"))}}
-  <div class="pagination">
+  <ul class="pagination">
     {{! previous page button}}
     <li class={{if (eq meta.page 1) "disabled"}}>
       {{#link-to (query-params page=(sub meta.page 1)) disabled=(eq meta.page 1)}}
@@ -95,5 +95,5 @@ display (optional):
         <span class="sr-only">previous</span>
       {{/link-to}}
     </li>
-  </div>
+  </ul>
 {{/if}}

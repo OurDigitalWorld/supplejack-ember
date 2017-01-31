@@ -1,0 +1,12 @@
+<div class="result-thumbnail">
+  {{! replace this bit with an image component that will accept an image src and a placeholder, show the image if possible, and show the placeholder if not }}
+  {{#if item.thumbnail_url}}
+    <img src={{item.thumbnail_url}} />
+  {{else}}
+    <img src="assets/thumb_placeholder.gif" />
+  {{/if}}
+</div>
+<div class="result-text">
+  <h3><a href={{item.source_url}}>{{item.title}}</a></h3>
+  <p>{{item.description}}</p>
+</div>
