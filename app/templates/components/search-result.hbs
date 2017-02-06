@@ -1,8 +1,7 @@
-<div class="result-thumbnail">
-  {{! replace this bit with an image component that will accept an image src and a placeholder, show the image if possible, and show the placeholder if not }}
-  {{display-image src=item.thumbnail_url}}
-</div>
 <div class="result-text">
   <h3><a href={{item.source_url}}>{{item.title}}</a></h3>
   <p>{{item.description}}</p>
 </div>
+<a class="result-thumbnail" href={{item.source_url}}>
+    {{display-image src=item.thumbnail_url}}
+</a>

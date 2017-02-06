@@ -60,9 +60,11 @@ aside{
 .result-thumbnail {
   margin: $standard-margin;
   width: ($image-size);
+  height: ($image-size);
+  overflow: hidden;
   > img{
-    max-width: $image-size;
-    max-height: $image-size;
+    width: 100%;
+    height: auto;
   }
 }
 //display placeholder image
@@ -108,6 +110,14 @@ main {
     }
     > .search-result {
       display: flex;
+      >.result-thumbnail {
+        //thumbnail appears visually to the left of the text
+        order: -1;
+      }
+        //the text box can resize, but the thumbnail can't
+      >.result-text {
+        flex: 1;
+      }
     }
   }
   //let aside go above search results on small screens

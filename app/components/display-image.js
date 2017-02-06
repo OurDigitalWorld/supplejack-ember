@@ -2,10 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'img',
-  attributeBindings: ['src'],
+  attributeBindings: ['src', 'alt'],
   classNameBindings: ['isBroken:placeholder'],
 
   isBroken: false,
+  //empty alt text tells screen readers to ignore this, which is best practice since a text link is next to it
+  alt: '',
 
   didInsertElement: function() {
     //set placeholder if thumb_url doesn't exist
