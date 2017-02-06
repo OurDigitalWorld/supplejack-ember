@@ -6,6 +6,7 @@
 $aside-width: 260px;
 $standard-margin: 10px;
 $image-size: 150px;
+$image-placeholder: '/assets/thumb_placeholder.gif';
 
 //--------STYLE--------
 //search-facets, facet-category, facet-link
@@ -57,12 +58,16 @@ aside{
 
 //search-result
 .result-thumbnail {
-  padding: $standard-margin;
-  width: ($image-size + 2 * ($standard-margin));
+  margin: $standard-margin;
+  width: ($image-size);
   > img{
-    max-height: $image-size;
     max-width: $image-size;
+    max-height: $image-size;
   }
+}
+//display placeholder image
+img.placeholder {
+  content: url($image-placeholder);
 }
 
 //--------LAYOUT--------
