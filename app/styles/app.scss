@@ -1,5 +1,6 @@
 //define any colors based on this one
 //$brand-primary: green;
+$text-muted: lightgray;
 
 @import "ember-bootstrap/bootstrap";
 
@@ -78,6 +79,22 @@ img.placeholder {
   margin-right: auto;
   width: $aside-width;
 }
+dl{
+  dt {
+    ::after{
+      content: ":";
+    }
+  }
+  dd {
+    margin: 0 0 0 (2*$standard-margin);
+    &:empty:before{
+      content: '(unknown)';
+      color: $text-muted;
+      font-style: italic;
+    }
+  }
+}
+
 
 //--------LAYOUT--------
 //includes responsive design triggers
