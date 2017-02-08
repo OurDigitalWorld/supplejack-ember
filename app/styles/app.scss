@@ -57,7 +57,7 @@ aside{
 }
 
 //search-result
-.result-thumbnail {
+.search-thumbnail {
   margin: $standard-margin;
   width: ($image-size);
   height: ($image-size);
@@ -70,6 +70,13 @@ aside{
 //display placeholder image
 img.placeholder {
   content: url($image-placeholder);
+}
+
+//result
+.result-thumbnail{
+  margin-left: auto;
+  margin-right: auto;
+  width: $aside-width;
 }
 
 //--------LAYOUT--------
@@ -110,12 +117,12 @@ main {
     }
     > .search-result {
       display: flex;
-      >.result-thumbnail {
+      >.search-thumbnail {
         //thumbnail appears visually to the left of the text
         order: -1;
       }
         //the text box can resize, but the thumbnail can't
-      >.result-text {
+      >.search-text {
         flex: 1;
       }
     }

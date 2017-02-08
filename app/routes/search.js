@@ -2,11 +2,6 @@ import Ember from 'ember';
 import ResetScrollMixin from 'ember-cli-reset-scroll';
 
 export default Ember.Route.extend(ResetScrollMixin, {
-  //fun fact: Ember uses the Glimmer 2 rendering engine, which dynamically re-renders
-  //  only DOM elements that have changed on a page after each action.
-  //  This is really awesome and really efficient, but a side effect of this is
-  //  that the page stays scrolled to whatever position it's currently at, even when
-  //  you click a link to another section of your site.
   //This mixin manually scrolls you back to the top whenever this route reloads.
   resetScroll: undefined,
 
@@ -112,7 +107,7 @@ export default Ember.Route.extend(ResetScrollMixin, {
     // message under search results informing user that we've done this.
 
 
-    params.fields = 'all';
+    params.fields = 'default';
     params.facets_per_page = 100;
     //adds facets to params
     const facets = this.controllerFor('search').get('recordFacets');
