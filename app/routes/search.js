@@ -1,10 +1,8 @@
 import Ember from 'ember';
 import ENV from 'supplejack-client/config/environment';
-import ResetScrollMixin from 'ember-cli-reset-scroll';
 
-export default Ember.Route.extend(ResetScrollMixin, {
+export default Ember.Route.extend({
   //This mixin manually scrolls you back to the top whenever this route reloads.
-  resetScroll: undefined,
 
   beforeModel(transition){
     const queryParams = transition.queryParams;
