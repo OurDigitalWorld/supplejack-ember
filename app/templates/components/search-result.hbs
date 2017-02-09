@@ -1,8 +1,8 @@
 <div class="search-text">
-  <h3>{{#link-to "result" item}}{{item.title}}{{/link-to}}</h3>
+  <h3>{{#link-to "result" item.id}}{{item.title}}{{/link-to}}</h3>
   {{#if item.creator}}<p class="creator"><strong>By:</strong> {{item.creator}}</p>{{/if}}
   <p>{{item.description}}</p>
 </div>
-{{#link-to "result" item class="search-thumbnail"}}
+{{#link-to "result" item.id class="search-thumbnail"}}
   {{display-image src=item.thumbnail_url}}
 {{/link-to}}
