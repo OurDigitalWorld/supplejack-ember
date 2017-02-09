@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'supplejack-client/config/environment';
 import ResetScrollMixin from 'ember-cli-reset-scroll';
 
 export default Ember.Route.extend(ResetScrollMixin, {
@@ -99,7 +100,7 @@ export default Ember.Route.extend(ResetScrollMixin, {
     }
     //SYSTEM-BASED PARAMS (added here)
     //adds the api key and field set to the params to be sent to the API
-    params.api_key = 'apikey';
+    params.api_key = ENV.APP.api_key;
 
     //potential feature to add here: Query the store for whatever is searched.
     // if no results are returned, add "~" to the end of each word in the 'text' param.

@@ -29,6 +29,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.host = 'http://192.168.99.100:3000';
+    ENV.APP.api_key = 'apikey'
   }
 
   if (environment === 'test') {
