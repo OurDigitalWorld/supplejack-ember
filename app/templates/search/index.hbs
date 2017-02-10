@@ -4,6 +4,10 @@
   {{#each model as |item|}}
     {{search-result item=item}}
   {{/each}}
+  {{#if (eq model.length 0)}}
+    <h2>Sorry, no results found.</h2>
+    <p>Try simplifying your search results or removing some filters!</p>
+  {{/if}}
 </main>
 {{search-pagination meta=model.meta onChange=(action "updateParams") display="links"}}
 

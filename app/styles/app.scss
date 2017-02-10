@@ -69,6 +69,7 @@ aside{
 img.placeholder{content: url($image-placeholder);}
 
 //RESULT
+//text
 img.result-thumbnail{
   margin-left: auto;
   margin-right: auto;
@@ -85,9 +86,11 @@ dl{
     }
   }
 }
-
-//FOOTER
-
+//image
+.leaflet-container{
+  width: 100%;
+  height: 400px;
+}
 
 //-----LAYOUT-----
 //includes flex setup and margins for full site
