@@ -1,4 +1,18 @@
 <div id="site-container">
-  {{outlet}}
+  <header>
+    <section id="site-title">
+      {{!link allows you to reset the query params, which is useful because they're normally sticky in Ember}}
+      {{#link-to "search" invokeAction=(action "updateParams" resetParams)}}
+        <h1>Supplejack Client</h1>
+      {{/link-to}}
+    </section>
+    <section id="search-bar"></section>
+  </header>
+  <div id="body-container">
+    <div id="body-content">
+      {{outlet}}
+    </div>
+    <aside id="left-sidebar"></aside>
+  </div>
   <footer><a href="#" id="back-to-top" class="btn-block text-center btn-primary">return to top</a></footer>
 </div>

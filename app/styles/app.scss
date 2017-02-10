@@ -1,30 +1,34 @@
-//define any colors based on this one
-//$brand-primary: green;
+//redefine bootstrap defaults
 $text-muted: lightgray;
 
 @import "ember-bootstrap/bootstrap";
 
-$aside-width: 260px;
-$standard-margin: 10px;
-$image-size: 150px;
+//set custom variables
+$margin-standard: 10px;
+$margin-wide: (2 * $margin-standard);
+$image-width: 150px;
 $image-placeholder: '/assets/thumb_placeholder.gif';
+$aside-width: 260px;
+$searchbar-width: 800px;
 
-//--------STYLE--------
-//search-facets, facet-category, facet-link
+//-----STYLE-----
+//HEADER
+header{
+  #search-bar{
+    max-width: $searchbar-width;
+  }
+}
+
+//SEARCH
+//aside formatting
 aside{
   min-width: $aside-width;
   max-width: $aside-width;
   width: $aside-width;
-  order: -1;
-  ul.facet-categories {
+  ul.facet-categories{
     list-style-type: none;
-    margin: 0;
     padding: 0;
-    a {
-      &:hover {
-        text-decoration: none;
-      }
-    }
+    a {&:hover{text-decoration:none;}}
     li.facet-category{
       .facet-category-name{
         text-transform: capitalize;
@@ -34,59 +38,46 @@ aside{
         cursor: pointer;
       }
     }
-    ul.facet-items {
+    ul.facet-items{
       list-style-type: none;
-      padding: 0 $standard-margin;
+      padding: 0 $margin-standard;
     }
   }
 }
-
 //search-pagination
-.ellipse-dropdown{
-  ul.dropdown-menu{
-    //limits size of dropdown menu to half the screen
-    min-width: 0;
-    height: auto;
-    max-height: 50vh;
-    overflow-x: hidden;
-    li > a:hover {
-      //gives consistent menu coloration
-      background-color: $btn-primary-bg;
-      color: white;
-    }
+.ellipse-dropdown ul.dropdown-menu{
+  min-width: 0;
+  height: auto;
+  max-height: 50vh;
+  overflow-x: hidden;
+  li a:hover {
+    background-color: $btn-primary-bg;
+    color: white;
   }
 }
-
-//search-result
-.search-thumbnail {
-  margin: $standard-margin;
-  width: ($image-size);
-  height: ($image-size);
+//surrogate formatting
+.search-thumbnail{
+  margin: $margin-standard;
+  width: ($image-width);
+  max-height: ($image-width);
   overflow: hidden;
-  > img{
+  img{
     width: 100%;
-    height: auto;
+    overflow: hidden;
   }
 }
-//display placeholder image
-img.placeholder {
-  content: url($image-placeholder);
-}
+img.placeholder{content: url($image-placeholder);}
 
-//result
-.result-thumbnail{
+//RESULT
+img.result-thumbnail{
   margin-left: auto;
   margin-right: auto;
   width: $aside-width;
 }
 dl{
-  dt {
-    ::after{
-      content: ":";
-    }
-  }
-  dd {
-    margin: 0 0 0 (2*$standard-margin);
+  dt::after{content: ":";}
+  dd{
+    margin: 0 0 0 ($margin-wide);
     &:empty:before{
       content: '(unknown)';
       color: $text-muted;
@@ -95,78 +86,61 @@ dl{
   }
 }
 
+//FOOTER
 
-//--------LAYOUT--------
-//includes responsive design triggers
-//placed last in this document to allow overwriting where needed
+
+//-----LAYOUT-----
+//includes flex setup and margins for full site
 
 html, body, body>.ember-view {height:100%;}
-#site-container{
-  min-height: 100%;
+div#site-container{
+  min-height:100%;
   display:flex;
-  flex-direction: column;
+  flex-direction:column;
   justify-content: space-between;
 }
-header {
-  display: flex;
+header{
+  display:flex;
   align-items: center;
-  margin-bottom: $standard-margin;
-  #page-title{
-    min-width: $aside-width + (2 * $standard-margin);
-  }
-  #search-bar{
-    margin: $standard-margin;
-    max-width: 800px;
-  }
-  //allows search bar to wrap to new line on small screens
-  @media(max-width: $screen-md){
-    flex-wrap: wrap;
-  }
+  margin-bottom: $margin-standard;
+  #site-title{min-width: $aside-width + $margin-wide;}
+  #search-bar{margin: $margin-standard;}
 }
-main {
-  flex: 1;
-  display: flex;
-  > * {
-    margin: 0 $standard-margin;
-    //switches margins on small screens
-    @media(max-width: $screen-md){
-      margin: $standard-margin 0;
+div#body-container{
+  flex:1;
+  display:flex;
+  >*{margin: 0 $margin-standard;}
+  #body-content{flex:1;}
+  aside{order:-1;}
+  .search-result{
+    display:flex;
+    .search-thumbnail{
+      order: -1;
     }
-    > .search-result {
-      display: flex;
-      >.search-thumbnail {
-        //thumbnail appears visually to the left of the text
-        order: -1;
-      }
-        //the text box can resize, but the thumbnail can't
-      >.search-text {
-        flex: 1;
-      }
+    .search-text{
+      flex: 1;
     }
   }
-  //let aside go above search results on small screens
-  @media(max-width: $screen-md){
-    flex-wrap: wrap;
-  }
 }
-aside {
-  @media(max-width: $screen-md){
+
+
+//-----RESPONSIVE-----
+//media queries for full site
+@media(max-width: $screen-md){
+  header{flex-wrap:wrap;}
+  div#body-container{
+    flex-wrap: wrap;
+    >*{margin: $margin-standard 0;}
+  }
+  .aside-toggle {display:block;}
+  aside{
     max-width: 100%;
     min-width: 100%;
     width: 100%;
+    .facet-categories{
+      display:none;
+      &.visible{display:block;}
+    }
   }
-}
-footer {
-  min-width: 100%;
-}
-//centers pagination elements on smaller screens
-.search-pagination {
-  display:flex;
-  @media(max-width: $screen-md){
-    justify-content: center;
-  }
-  //prevents pagination from wrapping on smaller screens
-  .pagination {
-    display:flex;
-  }
+
 }

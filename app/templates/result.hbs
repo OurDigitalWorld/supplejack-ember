@@ -1,29 +1,24 @@
-<header>
-  <section id="page-title">
-    {{!link allows you to reset the query params, which is useful because they're normally sticky in Ember}}
-    {{#link-to "search"}}
-      <h1>Supplejack Client</h1>
-    {{/link-to}}
-  </section>
-  <section id="search-bar">
-    <button class="btn btn-default" {{action 'back'}}>&lt;&lt; Back to Search Results</button>
-  </section>
-</header>
+{{#ember-wormhole to="search-bar"}}
+  <button class="btn btn-default" {{action 'back'}}>&lt;&lt; Back to Search Results</button>
+{{/ember-wormhole}}
+{{#ember-wormhole to="left-sidebar"}}
+  <img class="result-thumbnail" src={{model.thumbnail_url}}>
+{{/ember-wormhole}}
+
 <main>
-  <section class="result">
-    <h2><a href={{model.source_url}}>{{model.title}}</a></h2>
-    <dl>
-      <dt>Creator</dt><dd>{{model.creator}}</dd>
-      <dt>Publisher</dt><dd>{{model.publisher}}</dd>
-      <dt>Description</dt><dd>{{model.description}}</dd>
-      <dt>Contributed By</dt><dd>{{model.display_content_partner}}</dd>
-      <dt>Date</dt><dd>{{model.display_date}}</dd>
-      <dt>Category</dt><dd>{{model.category}}</dd>
-      <dt>Subject</dt><dd>{{model.subject}}</dd>
-      <dt>Language</dt><dd>{{model.language}}</dd>
-      <dt>Rights</dt><dd>{{model.rights}}</dd>
-    </dl>
-  </section>
-  <aside><img class="result-thumbnail" src={{model.thumbnail_url}}></aside>
+  <h2><a href={{model.source_url}}>{{model.title}}</a></h2>
+  <dl>
+    <dt>Creator</dt><dd>{{model.creator}}</dd>
+    <dt>Publisher</dt><dd>{{model.publisher}}</dd>
+    <dt>Description</dt><dd>{{model.description}}</dd>
+    <dt>Contributed By</dt><dd>{{model.display_content_partner}}</dd>
+    <dt>Date</dt><dd>{{model.display_date}}</dd>
+    <dt>Category</dt><dd>{{model.category}}</dd>
+    <dt>Subject</dt><dd>{{model.subject}}</dd>
+    <dt>Language</dt><dd>{{model.language}}</dd>
+    <dt>Rights</dt><dd>{{model.rights}}</dd>
+  </dl>
 </main>
+
+
 

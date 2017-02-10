@@ -5,6 +5,9 @@ export default Ember.Controller.extend({
   actions:{
     updateParams(obj){
       this.get('application').send('updateParams', obj);
+    },
+    test(){
+      console.log(this.get('model'));
     }
   }
 });

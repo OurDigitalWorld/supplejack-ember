@@ -1,0 +1,11 @@
+{{search-pagination meta=model.meta onChange=(action "updateParams") display="offset"}}
+<main>
+  <h2 class="sr-only">Search Results</h2>
+  {{#each model as |item|}}
+    {{search-result item=item}}
+  {{/each}}
+</main>
+{{search-pagination meta=model.meta onChange=(action "updateParams") display="links"}}
+
+
+

@@ -8,7 +8,9 @@ const Router = Ember.Router.extend(RouterScroll, {
 });
 
 Router.map(function() {
-  this.route('search');
+  this.route('search', function(){
+    this.route('map');
+  });
   this.route('result', {path: '/result/:result_id'});
 });
 

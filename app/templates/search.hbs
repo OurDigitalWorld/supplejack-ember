@@ -1,43 +1,22 @@
-  <header>
-    <section id="page-title">
-      {{!link allows you to reset the query params, which is useful because they're normally sticky in Ember}}
-     {{#link-to "search" invokeAction=(action "updateParams" resetParams)}}
-       <h1>Supplejack Client</h1>
-     {{/link-to}}
-    </section>
-    <section id="search-bar">
-      {{search-searchbar fields=recordFields param=text onChange=(action "updateParams")}}
-    </section>
-  </header>
-  <main>
-    <section id="search-results">
-      <h2 class="sr-only">Search Results</h2>
-      {{search-pagination meta=model.meta onChange=(action "updateParams") display="offset"}}
-      {{#each model as |item|}}
-        {{search-result item=item}}
-      {{/each}}
-      {{search-pagination meta=model.meta onChange=(action "updateParams") display="links"}}
-    </section>
-    <aside id="search-facets">
-      {{#if (or screen.isMediumAndUp displayAside)}}
-        {{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
-        {{#if screen.isMediumAndDown}}
-          <button class="btn-block text-center btn-primary" {{action "toggleDisplayAside"}}>
-            Hide Filters <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
-          </button>
-        {{/if}}
-      {{else}}
-        <button class="btn-block text-center btn-primary" {{action "toggleDisplayAside"}}>
-          Show Filters <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-        </button>
-      {{/if}}
-    </aside>
-  </main>
+{{#ember-wormhole to="left-sidebar"}}
+  {{search-facets meta=model.meta param=application.and onChange=(action "updateParams")}}
+{{/ember-wormhole}}
+
+{{#ember-wormhole to="search-bar"}}
+  {{search-searchbar param=application.text onChange=(action "updateParams")}}
+{{/ember-wormhole}}
 
 
+  <ul class="nav nav-tabs">
+    {{#active-link}}
+      {{link-to "Text" "search.index"}}
+    {{/active-link}}
+    {{#active-link}}
+      {{link-to "Map" "search.map"}}
+    {{/active-link}}
+  </ul>
 
-
-
+{{outlet}}
 
 
 
