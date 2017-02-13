@@ -9,8 +9,8 @@ onChange: action to be executed when queryParams are changed by this component.
 --}}
 
 
-<form method="post" {{action "executeSearch" searchParams on="submit"}}>
-  <div class="input-group" role="group" aria-label="Search">
+<form method="post" {{action "executeSearch" searchParams on="submit"}} >
+  <div class="input-group" role="search" aria-label="search">
     <label for="searchbar-search" class="sr-only">Enter search text</label>
     {{input
       id="searchbar-search"
