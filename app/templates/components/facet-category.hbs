@@ -2,9 +2,7 @@
   <span class="facet-category-name">{{facet}}</span>
   <ul class="facet-items">
     {{#each-in filteredOptions as |title results|}}
-      <li class="facet-item">
-        {{facet-link facet title results param onChange=(action onChange)}}
-      </li>
+      {{facet-link facet title results param onChange=(action onChange)}}
     {{/each-in}}
     {{#if hasHidden}}
       <li class="show-more">

@@ -7,7 +7,9 @@ const FacetLinkComponent = Ember.Component.extend({
     this.send('setState');
   },
   //tagless component
-  tagName: '',
+  tagName: 'li',
+  classNames: ['facet-link'],
+  classNameBindings: ['facetInUse:active'],
   //component state
   facetInUse: false,
   actions: {

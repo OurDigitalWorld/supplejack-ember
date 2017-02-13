@@ -10,9 +10,13 @@ export default Ember.Component.extend({
   screen: Ember.inject.service(),
   facetsVisible: false,
   facetsHideable: Ember.computed.alias('screen.isMediumAndDown'),
+  filterNumber: Ember.computed(function(){
+    return Ember.$('.facet-items').find('.active').length;
+  }),
   actions:{
     toggleFacets(){
       this.toggleProperty('facetsVisible');
+      this.notifyPropertyChange('filterNumber');
     }
   }
 });

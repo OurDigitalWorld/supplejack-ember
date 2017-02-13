@@ -145,6 +145,7 @@ div#body-container{
   header{flex-wrap:wrap;}
   div#body-container{
     flex-wrap: wrap;
+    align-content: flex-start;
     >*{margin: $margin-standard 0;}
   }
   .aside-toggle {display:block;}
