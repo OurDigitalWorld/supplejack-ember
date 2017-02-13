@@ -6,16 +6,17 @@
 {{/ember-wormhole}}
 
 <main>
-  <h2><a href={{model.source_url}}>{{model.title}}</a></h2>
+  <h2>{{model.title}}</h2>
+  <p><a href={{model.source_url}}>View original source</a> contributed by {{model.display_content_partner}}</p>
   <dl>
-    <dt>Creator</dt><dd>{{model.creator}}</dd>
-    <dt>Publisher</dt><dd>{{model.publisher}}</dd>
+    {{!Note: csv-list is applied to any records that have multi-value: true in the schema}}
+    <dt>Creator</dt><dd>{{csv-list model.creator}}</dd>
     <dt>Description</dt><dd>{{model.description}}</dd>
-    <dt>Contributed By</dt><dd>{{model.display_content_partner}}</dd>
+    <dt>Publisher</dt><dd>{{model.publisher}}</dd>
     <dt>Date</dt><dd>{{model.display_date}}</dd>
-    <dt>Category</dt><dd>{{model.category}}</dd>
-    <dt>Subject</dt><dd>{{model.subject}}</dd>
-    <dt>Language</dt><dd>{{model.language}}</dd>
+    <dt>Category</dt><dd>{{csv-list model.category}}</dd>
+    <dt>Subject</dt><dd>{{csv-list model.subject}}</dd>
+    <dt>Language</dt><dd>{{csv-list model.language}}</dd>
     <dt>Rights</dt><dd>{{model.rights}}</dd>
   </dl>
 </main>

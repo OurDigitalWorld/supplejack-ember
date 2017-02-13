@@ -42,7 +42,7 @@ export default Ember.Controller.extend({
     {value: 'thumbnail_url', title:'Thumbnail'}
   ],
 
-  //all record fields that are a facet. Stringified to send to model.
+  //all record fields that are a facet. USED IN ROUTES/APPLICATION
   recordFacets: Ember.computed('recordFields.[]', function(){
     const facetArray = this.get('recordFields').filterBy('facet', true);
     let facetString = '';
@@ -53,7 +53,7 @@ export default Ember.Controller.extend({
     return facetString;
   }),
 
-  //array of all recordFields values
+  //array of all recordFields values. USED IN ROUTES/APPLICATION
   recordValues: Ember.computed('recordFields.[]', function(){
     let valueArray = [];
     this.get('recordFields').forEach((record)=>{
@@ -67,7 +67,6 @@ export default Ember.Controller.extend({
     //accepts object containing key/value pairs
     //where the key is a param name, and the value is its value
     updateParams(obj){
-      console.log(obj);
       for (const key in obj){
         if (!obj.hasOwnProperty(key)) {continue;}
         this.set(key, obj[key]);

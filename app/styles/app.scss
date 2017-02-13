@@ -68,6 +68,12 @@ aside{
 }
 img.placeholder{content: url($image-placeholder);}
 
+//map results page
+.leaflet-container{
+  width: 100%;
+  height: 400px;
+}
+
 //RESULT
 //text
 img.result-thumbnail{
@@ -86,10 +92,16 @@ dl{
     }
   }
 }
-//image
-.leaflet-container{
-  width: 100%;
-  height: 400px;
+//changes a list into a set of comma separated values
+.csv {
+  padding: 0;
+  display: inline;
+  list-style: none;
+  li{
+    display: inline;
+    &:after {content: ', ';}
+    &:last-of-type:after {content: '';}
+  }
 }
 
 //-----LAYOUT-----
