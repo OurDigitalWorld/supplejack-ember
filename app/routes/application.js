@@ -115,7 +115,6 @@ export default Ember.Route.extend({
     //fetches the model from the API with given params
     return this.get('store').query('record', params);
   },
-
   queryParams: {
     page: {refreshModel: true},
     text: {refreshModel: true},

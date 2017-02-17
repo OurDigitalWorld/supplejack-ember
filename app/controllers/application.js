@@ -11,7 +11,6 @@ export default Ember.Controller.extend({
   or: '',
   without: '',
 
-
   //this object can be passed to updateParams to clear all set params.
   resetParams: {
     page: 1,
@@ -71,6 +70,9 @@ export default Ember.Controller.extend({
         if (!obj.hasOwnProperty(key)) {continue;}
         this.set(key, obj[key]);
       }
+    },
+    showBackToTop(){
+      console.log('working');
     }
   }
 });

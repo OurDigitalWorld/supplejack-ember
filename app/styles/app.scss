@@ -121,6 +121,9 @@ header{
   #site-title{min-width: $aside-width + $margin-wide;}
   #search-bar{margin: $margin-standard;}
 }
+.nav-tabs{
+  margin-bottom: $margin-standard;
+}
 div#body-container{
   flex:1;
   display:flex;

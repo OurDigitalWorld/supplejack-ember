@@ -46,6 +46,7 @@
     "ember-router-scroll": "0.1.1",
     "ember-screen": "0.1.1",
     "ember-scroll-to": "0.5.4",
+    "ember-social-share": "0.2.9",
     "ember-truth-helpers": "1.3.0",
     "ember-welcome-page": "^1.0.3",
     "ember-wormhole": "0.5.1",
