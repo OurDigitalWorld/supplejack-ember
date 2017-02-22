@@ -109,27 +109,37 @@ dl{
 
 html, body, body>.ember-view {height:100%;}
 div#site-container{
-  min-height:100%;
+  height:100vh;
+  width: 100%;
   display:flex;
   flex-direction:column;
   justify-content: space-between;
 }
 header{
   display:flex;
+  flex-shrink: 0;
   align-items: center;
   margin-bottom: $margin-standard;
   #site-title{min-width: $aside-width + $margin-wide;}
   #search-bar{margin: $margin-standard;}
 }
+footer{
+  flex-shrink:0;
+}
 .nav-tabs{
   margin-bottom: $margin-standard;
 }
 div#body-container{
-  flex:1;
+  flex:1 0 auto;
   display:flex;
+  width: 100%;
   >*{margin: 0 $margin-standard;}
-  #body-content{flex:1;}
-  aside{order:-1;}
+  #body-content{
+    flex:1 1 auto;}
+  aside{
+    flex: 0 0 auto;
+    order:-1;
+  }
   .search-result{
     display:flex;
     .search-thumbnail{
@@ -148,6 +158,7 @@ div#body-container{
   header{flex-wrap:wrap;}
   div#body-container{
     flex-wrap: wrap;
+    width: 100%;
     align-content: flex-start;
     >*{margin: $margin-standard 0;}
   }
@@ -161,5 +172,4 @@ div#body-container{
       &.visible{display:block;}
     }
   }
-
 }
