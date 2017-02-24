@@ -72,7 +72,6 @@ export default Ember.Controller.extend({
       }
     },
     showBackToTop(){
-      console.log('working');
     }
   }
 });

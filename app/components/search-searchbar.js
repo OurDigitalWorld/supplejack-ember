@@ -14,7 +14,6 @@ export default Ember.Component.extend({
   },
   actions: {
     executeSearch(value){
-      console.log('fired');
       this.get('onChange')(value);
     }
   }

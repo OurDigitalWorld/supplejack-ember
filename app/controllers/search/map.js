@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   //leaflet variables - should eventually be moved to new controller
   lat: 53.014783245859235,
   lng: -96.24023437500001,
-  zoom: 4,
+  zoom: 7,
   actions: {
     updateParams(obj){
       this.get('application').send('updateParams', obj);
