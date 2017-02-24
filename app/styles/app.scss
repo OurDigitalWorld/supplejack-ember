@@ -125,6 +125,7 @@ header{
 }
 footer{
   flex-shrink:0;
+  min-height: $margin-standard;
 }
 .nav-tabs{
   margin-bottom: $margin-standard;
@@ -177,5 +178,8 @@ div#body-container{
       display:none;
       &.visible{display:block;}
     }
+  }
+  footer{
+    min-height: 0;
   }
 }
