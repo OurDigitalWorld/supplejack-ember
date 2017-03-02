@@ -14,7 +14,10 @@ display (optional):
 
 {{#if (or (eq display "offset") (eq display "both"))}}
   <div class="pagination-offset form-inline">
-    Viewing {{offset}}-{{offsetLast}} of {{meta.result_count}} results.
+    {{#if (gt meta.page 1)}}
+        Page {{meta.page}}{{if (eq meta.page 100000) "+"}} of
+    {{/if}}
+    {{meta.result_count}} results.
     <label for="results-per-page">Results per page</label>
     <select id="results-per-page" class="form-control input-sm" onchange={{action "selectOffset" value="target.value"}}>
       {{#each offsetOptions as |option|}}
@@ -44,18 +47,7 @@ display (optional):
     </li>
     {{! first ellipse}}
     {{#if displayStartEllipse}}
-      {{#bs-dropdown direction="up" tagName="li" classNames="ellipse-dropdown" as |dd|}}
-        {{#dd.toggle}}...{{/dd.toggle}}
-        {{#dd.menu as |ddm|}}
-          {{#each startEllipseRange as |link|}}
-            {{#ddm.item}}
-              {{#link-to (query-params page=link.page)}}
-                {{link.page}}
-              {{/link-to}}
-            {{/ddm.item}}
-          {{/each}}
-        {{/dd.menu}}
-      {{/bs-dropdown}}
+      <li class="disabled"><a>...</a></li>
     {{/if}}
     {{! all the middle pages}}
     {{#each paginationLinks as |link|}}
@@ -65,29 +57,6 @@ display (optional):
         {{/link-to}}
       </li>
     {{/each}}
-    {{! second ellipse}}
-    {{#if displayEndEllipse}}
-      {{#bs-dropdown direction="up" tagName="li" classNames="ellipse-dropdown" as |dd|}}
-        {{#dd.toggle}}...{{/dd.toggle}}
-        {{#dd.menu as |ddm|}}
-          {{#each endEllipseRange as |link|}}
-            {{#ddm.item}}
-              {{#link-to (query-params page=link.page)}}
-                {{link.page}}
-              {{/link-to}}
-            {{/ddm.item}}
-          {{/each}}
-        {{/dd.menu}}
-      {{/bs-dropdown}}
-    {{/if}}
-    {{! last page}}
-    {{#if (gt lastPage 1)}}
-      <li class={{if (eq meta.page lastPage) "active"}}>
-        {{#link-to (query-params page=lastPage)}}
-          {{lastPage}}
-        {{/link-to}}
-      </li>
-    {{/if}}
     {{! next page button}}
     <li class={{if (eq meta.page lastPage) "disabled"}}>
       {{#link-to (query-params page=(add meta.page 1)) disabled=(eq meta.page lastPage)}}

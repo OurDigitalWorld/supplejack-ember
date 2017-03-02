@@ -29,14 +29,14 @@ export default Ember.Controller.extend({
   recordFields: [
     {value: 'title', title: 'Title'},
     {value: 'description', title: 'Description'},
-    {value: 'subject', title: 'Subject', facet: true},
+    {value: 'subject', title: 'Subject', facet:true},
     {value: 'display_content_partner', title: 'Content Partner'},
     {value: 'display_collection', title: 'Collection'},
     {value: 'source_url', title: 'URL'},
     {value: 'display_date', title: 'Date'},
     {value: 'creator', title: 'Creator'},
-    {value: 'category', title: 'Category', facet: true},
-    {value: 'language', title: 'Language', facet: true},
+    {value: 'category', title: 'Category'},
+    {value: 'language', title: 'Language'},
     {value: 'publisher', title: 'Publisher'},
     {value: 'thumbnail_url', title:'Thumbnail'}
   ],
