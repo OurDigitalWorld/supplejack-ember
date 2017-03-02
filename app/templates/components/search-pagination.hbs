@@ -15,9 +15,9 @@ display (optional):
 {{#if (or (eq display "offset") (eq display "both"))}}
   <div class="pagination-offset form-inline">
     {{#if (gt meta.page 1)}}
-        Page {{meta.page}}{{if (eq meta.page 100000) "+"}} of
+        Page {{format-number meta.page format="0,0"}}{{if (eq meta.page 100000) "+"}} of
     {{/if}}
-    {{meta.result_count}} results.
+    {{format-number meta.result_count format="0,0"}} results.
     <label for="results-per-page">Results per page</label>
     <select id="results-per-page" class="form-control input-sm" onchange={{action "selectOffset" value="target.value"}}>
       {{#each offsetOptions as |option|}}
@@ -53,7 +53,7 @@ display (optional):
     {{#each paginationLinks as |link|}}
       <li class={{if link.isActive "active"}}>
         {{#link-to (query-params page=link.page)}}
-          {{link.page}}
+          {{format-number link.page format="0,0"}}
         {{/link-to}}
       </li>
     {{/each}}

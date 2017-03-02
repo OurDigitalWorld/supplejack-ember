@@ -12,5 +12,5 @@ onChange=(action onChange): bubbles actions performed by this component up witho
 {{#if facetInUse}}
   <strong>{{title}}</strong> <a href {{action "removeFacet"}}>(remove)</a>
 {{else}}
-  <a href {{action "addFacet"}}>{{title}}</a>: {{results}}
+  <a href {{action "addFacet"}}>{{title}}</a>: {{format-number results format="0,0"}}
 {{/if}}
