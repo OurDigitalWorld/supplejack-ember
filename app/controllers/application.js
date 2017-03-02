@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
     {value: 'creator', title: 'Creator'},
     {value: 'category', title: 'Category', facet: true},
     {value: 'language', title: 'Language', facet: true},
-    {value: 'publisher', title: 'Publisher', facet:true},
+    {value: 'publisher', title: 'Publisher'},
     {value: 'thumbnail_url', title:'Thumbnail'}
   ],
 

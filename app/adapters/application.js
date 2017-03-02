@@ -3,6 +3,7 @@ import ENV from 'supplejack-client/config/environment';
 
 export default DS.RESTAdapter.extend({
   host: ENV.APP.host,
+  namespace: ENV.APP.namespace,
   //supplejack's find record spec doesn't quite match a standard REST interface
   urlForFindRecord(id, modelName){
     let baseUrl = this.buildURL();
