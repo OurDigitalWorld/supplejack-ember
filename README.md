@@ -20,6 +20,9 @@ You will need the following things properly installed on your computer.
 * `npm install`
 * `bower install`
 
+Before running it, rename `config/environment.js.build` to `config/environment.js`, and edit it to include the IP for
+your Supplejack API and your API key.
+
 ## Running / Development
 
 * `ember serve`

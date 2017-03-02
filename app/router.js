@@ -16,7 +16,7 @@ const Router = Ember.Router.extend(RouterScroll, {
       } else {
         Ember.$('#return-to-top').addClass('hidden');
       }
-    }, 10)
+    }, 10);
   }
 });
 
