@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['page', 'text', 'per_page', 'and', 'or', 'without'],
+  queryParams: ['page', 'text', 'per_page', 'and', 'or', 'without', 'geo_bbox'],
   page: 1,
   text: '',
   per_page: 20,
@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
   and: '',
   or: '',
   without: '',
+  geo_bbox: '',
 
   //this object can be passed to updateParams to clear all set params.
   resetParams: {
@@ -19,6 +20,7 @@ export default Ember.Controller.extend({
     and: '',
     or: '',
     without: '',
+    geo_bbox: '',
   },
 
   //assigns human-readable text values to each of the record model attributes
@@ -36,9 +38,10 @@ export default Ember.Controller.extend({
     {value: 'display_date', title: 'Date'},
     {value: 'creator', title: 'Creator'},
     {value: 'category', title: 'Category'},
-    {value: 'language', title: 'Language'},
+    {value: 'language', title: 'Language', facet:true},
     {value: 'publisher', title: 'Publisher'},
-    {value: 'thumbnail_url', title:'Thumbnail'}
+    {value: 'thumbnail_url', title:'Thumbnail'},
+    {value: 'locations', title:'Locations'}
   ],
 
   //all record fields that are a facet. USED IN ROUTES/APPLICATION
@@ -70,8 +73,6 @@ export default Ember.Controller.extend({
         if (!obj.hasOwnProperty(key)) {continue;}
         this.set(key, obj[key]);
       }
-    },
-    showBackToTop(){
     }
   }
 });

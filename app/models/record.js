@@ -14,6 +14,8 @@ export default DS.Model.extend({
   rights: DS.attr(),
   publisher: DS.attr(),
   thumbnail_url: DS.attr(),
+  lat: DS.attr(),
+  lng: DS.attr()
 
   //note: Available metadata for this model (access in template through model.meta)
   // result_count, per_page, page, facets

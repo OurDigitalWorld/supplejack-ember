@@ -103,8 +103,12 @@ export default Ember.Route.extend({
     // Possibly add some sort of flash message addon so that we can display a flash
     // message under search results informing user that we've done this.
 
+    //if using DigitalNZ dataset
+    params.fields='title,creator,thumbnail_url,description,id,locations';
 
-    params.fields = 'default';
+    //if using stack we control
+    //params.fields = 'default';
+
     params.facets_per_page = 100;
     //adds facets to params
     const facets = this.controllerFor('application').get('recordFacets');
@@ -125,6 +129,7 @@ export default Ember.Route.extend({
     // passing them to the API.
     and: {refreshModel: true},
     or: {refreshModel: true},
-    without: {refreshModel: true}
+    without: {refreshModel: true},
+    geo_bbox: {refreshModel: true},
   }
 });
