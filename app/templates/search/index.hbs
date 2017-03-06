@@ -1,4 +1,7 @@
-{{search-pagination meta=model.meta onChange=(action "updateParams") display="offset"}}
+{{!{{search-pagination meta=model.meta onChange=(action "updateParams") display="offset"}}
+{{#search-result-stats meta=model.meta showDropdown=true onChange=(action "updateParams") as |stat|}}
+    Page {{stat.formattedPage}} of {{stat.formattedResults}} results.
+{{/search-result-stats}}
 <main>
   <h2 class="sr-only">Search Results</h2>
   {{#each model as |item|}}
@@ -9,7 +12,7 @@
     <p>Try simplifying your search results or removing some filters!</p>
   {{/if}}
 </main>
-{{search-pagination meta=model.meta onChange=(action "updateParams") display="links"}}
+{{search-pagination meta=model.meta}}
 
 
 

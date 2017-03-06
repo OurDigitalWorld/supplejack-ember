@@ -34,10 +34,14 @@ export default Ember.Controller.extend({
       this.set('lng', center.lng);
 
       let bounds = e.target.getBounds();
-      const north = bounds.getNorth() > 180? 180 : bounds.getNorth();
-      const west = bounds.getWest() < -90? -90 : bounds.getWest();
-      const south = bounds.getSouth() < -180? -180 : bounds.getSouth();
-      const east = bounds.getEast() > 90? 90: bounds.getEast();
+      const north = bounds.getNorth() > 90? 90 : bounds.getNorth();
+      const west = bounds.getWest() < -180? -180 : bounds.getWest();
+      const south = bounds.getSouth() < -90? -90 : bounds.getSouth();
+      const east = bounds.getEast() > 180? 180: bounds.getEast();
+      console.log('east:'+bounds.getEast());
+      console.log('west:'+bounds.getWest());
+      console.log('north:'+bounds.getNorth());
+      console.log('south:'+bounds.getSouth());
       this.set('boundingBox.geo_bbox', `${north},${west},${south},${east}`);
       this.set('isHidden', false);
     }

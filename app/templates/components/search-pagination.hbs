@@ -1,68 +1,38 @@
 {{!--HOW TO USE
 Add this to your template to display pagination information and links on your page, such as:
-Syntax:
-{{search-pagination meta=model.meta onChange=(action "updateParams") display="both"}}
-meta: an object containing pagination metadata for current model (results_count, page, and per_page)
-onChange: action to be executed when queryParams are changed by this component.
-display (optional):
-  "offset" : displays offset info (ie "Viewing 0-20 of 157 results.")
-  "links" : displays links for changing pages
-  "both" (default) : displays both offset and links.
+Syntax: {{search-pagination meta=model.meta}}
 --}}
 
-{{!--------OFFSET--------}}
-
-{{#if (or (eq display "offset") (eq display "both"))}}
-  <div class="pagination-offset form-inline">
-    {{#if (gt meta.page 1)}}
-        Page {{format-number meta.page format="0,0"}}{{if (eq meta.page 100000) "+"}} of
-    {{/if}}
-    {{format-number meta.result_count format="0,0"}} results.
-    <label for="results-per-page">Results per page</label>
-    <select id="results-per-page" class="form-control input-sm" onchange={{action "selectOffset" value="target.value"}}>
-      {{#each offsetOptions as |option|}}
-        <option value={{option.value}} selected={{eq offsetAmount option.value}}>
-          {{option.value}}
-        </option>
-      {{/each}}
-    </select>
-  </div>
+{{! previous page button}}
+<li class={{if (eq meta.page 1) "disabled"}}>
+  {{#link-to (query-params page=(sub meta.page 1)) disabled=(eq meta.page 1)}}
+    <span class="aria-hidden">&lt;&lt;</span>
+    <span class="sr-only">previous</span>
+  {{/link-to}}
+</li>
+{{! first page}}
+<li class={{if (eq meta.page 1) "active"}}>
+{{#link-to (query-params page=1)}}
+  1
+{{/link-to}}
+</li>
+{{! ellipses}}
+{{#if displayStartEllipse}}
+  <li class="disabled"><a>...</a></li>
 {{/if}}
-
-{{!--------PAGINATION BAR--------}}
-{{#if (or (eq display "links") (eq display "both"))}}
-  <ul class="pagination">
-    {{! previous page button}}
-    <li class={{if (eq meta.page 1) "disabled"}}>
-      {{#link-to (query-params page=(sub meta.page 1)) disabled=(eq meta.page 1)}}
-        <span class="aria-hidden">&lt;&lt;</span>
-        <span class="sr-only">previous</span>
-      {{/link-to}}
-    </li>
-    {{! first page}}
-    <li class={{if (eq meta.page 1) "active"}}>
-    {{#link-to (query-params page=1)}}
-      1
+{{! all the middle pages}}
+{{#each paginationLinks as |link|}}
+  <li class={{if link.isActive "active"}}>
+    {{#link-to (query-params page=link.page)}}
+      {{format-number link.page format="0,0"}}
     {{/link-to}}
-    </li>
-    {{! first ellipse}}
-    {{#if displayStartEllipse}}
-      <li class="disabled"><a>...</a></li>
-    {{/if}}
-    {{! all the middle pages}}
-    {{#each paginationLinks as |link|}}
-      <li class={{if link.isActive "active"}}>
-        {{#link-to (query-params page=link.page)}}
-          {{format-number link.page format="0,0"}}
-        {{/link-to}}
-      </li>
-    {{/each}}
-    {{! next page button}}
-    <li class={{if (eq meta.page lastPage) "disabled"}}>
-      {{#link-to (query-params page=(add meta.page 1)) disabled=(eq meta.page lastPage)}}
-        <span class="aria-hidden">&gt;&gt;</span>
-        <span class="sr-only">previous</span>
-      {{/link-to}}
-    </li>
-  </ul>
-{{/if}}
+  </li>
+{{/each}}
+{{! next page button}}
+<li class={{if (eq meta.page lastPage) "disabled"}}>
+  {{#link-to (query-params page=(add meta.page 1)) disabled=(eq meta.page lastPage)}}
+    <span class="aria-hidden">&gt;&gt;</span>
+    <span class="sr-only">previous</span>
+  {{/link-to}}
+</li>
+

@@ -58,16 +58,7 @@ aside{
   }
 }
 //search-pagination
-.ellipse-dropdown ul.dropdown-menu{
-  min-width: 0;
-  height: auto;
-  max-height: 50vh;
-  overflow-x: hidden;
-  li a:hover {
-    background-color: $btn-primary-bg;
-    color: white;
-  }
-}
+
 //surrogate formatting
 .search-thumbnail{
   margin: $margin-standard;
@@ -94,7 +85,7 @@ img.placeholder{content: url($image-placeholder);}
   display: flex;
   justify-content: center;
   .overlay-content {
-    z-index: 999999;
+    z-index: 600;
   }
 }
 

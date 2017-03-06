@@ -1,3 +1,10 @@
+{{#search-result-stats meta=model.meta onChange=(action "updateParams") as |stat|}}
+  {{#if (lte stat.results 100)}}
+    Displaying {{stat.formattedResults}} results.
+  {{else}}
+    Displaying {{stat.perPage}} of {{stat.formattedResults}} results. Zoom in or narrow your search results, then click "Search this area" to view additional results.
+  {{/if}}
+{{/search-result-stats}}
 <div class="overlay-container">
     <div class="overlay-content {{if isHidden "hidden"}}">
         <button class="btn btn-primary" {{action "updateParams" boundingBox}}>Search this area</button>

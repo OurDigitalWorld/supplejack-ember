@@ -1,0 +1,37 @@
+{{!--HOW TO USE:  Use this component when you want to display stats about the current set of search results, such as
+  "Showing page 3 of 150,000 results.  Results per page: 20"
+  SYNTAX:
+  {{#search-result-stats meta=model.meta showDropdown=true onChange=(action "updateParams") as |stat|}}
+    Page {{stat.page}} of {{stat.results}} results.
+  {{/search-result-stats}}
+  OPTIONS:
+    meta: metadata object containing page, per_page, and result_count (required)
+    showDropdown (default: false): if true, shows "Results per page: ___" with dropdown at end of stat block
+    onChange: action that should accept an object containing queryparam names as keys, and their new values.
+  HASH:
+    page: number of page you're currently on
+    formattedPage: page, but with comma formatting for large numbers
+    results: total count of results
+    formattedResults: results, but with comma formatting for large numbers
+    perPage: number of results per page.
+
+--}}
+
+{{yield (hash
+          page=meta.page
+          formattedPage=(concat (format-number meta.page format="0,0")(if (eq meta.page 100000) "+"))
+          results=meta.result_count
+          formattedResults=(format-number meta.result_count format="0,0")
+          perPage=meta.per_page
+        )}}
+{{#if showDropdown}}
+    <label for="results-per-page">Results per page</label>
+    <select id="results-per-page" class="form-control input-sm" onchange={{action "selectOffset" value="target.value"}}>
+      {{#each offsetOptions as |option|}}
+          <option value={{option.value}} selected={{eq offsetAmount option.value}}>
+            {{option.value}}
+          </option>
+      {{/each}}
+    </select>
+{{/if}}
+
