@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   application: Ember.inject.controller('application'),
   textParamStorage: {},
+  queryParams: ['lat', 'lng', 'zoom'],
   //leaflet variables - should eventually be moved to new controller
   lat: 53.014783245859235,
   lng: -96.24023437500001,
@@ -32,16 +33,14 @@ export default Ember.Controller.extend({
       let center = e.target.getCenter();
       this.set('lat', center.lat);
       this.set('lng', center.lng);
+      this.set('zoom', e.target.getZoom());
 
       let bounds = e.target.getBounds();
       const north = bounds.getNorth() > 90? 90 : bounds.getNorth();
       const west = bounds.getWest() < -180? -180 : bounds.getWest();
       const south = bounds.getSouth() < -90? -90 : bounds.getSouth();
       const east = bounds.getEast() > 180? 180: bounds.getEast();
-      console.log('east:'+bounds.getEast());
-      console.log('west:'+bounds.getWest());
-      console.log('north:'+bounds.getNorth());
-      console.log('south:'+bounds.getSouth());
+
       this.set('boundingBox.geo_bbox', `${north},${west},${south},${east}`);
       this.set('isHidden', false);
     }
