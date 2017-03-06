@@ -8,6 +8,8 @@ export default Ember.Controller.extend({
   lng: -96.24023437500001,
   zoom: 5,
 
+
+
   locations: Ember.computed('model', function(){
     console.log(this.get('model'));
   }),
@@ -21,6 +23,9 @@ export default Ember.Controller.extend({
       let center = e.target.getCenter();
       this.set('lat', center.lat);
       this.set('lng', center.lng);
+
+      let bounds = e.target.getBounds();
+      const boundingBox = `${bounds.getNorth()},${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()}`;
     }
   }
 });

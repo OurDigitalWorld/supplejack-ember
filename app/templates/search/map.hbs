@@ -1,10 +1,13 @@
 {{#leaflet-map tagName="main" lat=lat lng=lng zoom=zoom onMoveend=(action "updateCenter") as |layers|}}
+  {{#layers.tooltip}}
+    <h1>Testing</h1>
+  {{/layers.tooltip}}
   {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
   {{#each model as |item|}}
     {{#layers.marker lat=item.lat lng=item.lng}}
-      {{#popup-layer}}
+      {{#marker.popup}}
         {{search-result item=item}}
-      {{/popup-layer}}
+      {{/marker.popup}}
     {{/layers.marker}}
   {{/each}}
 {{/leaflet-map}}
