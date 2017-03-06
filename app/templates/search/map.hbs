@@ -12,13 +12,16 @@
   onMoveend=(action "updateCenter")
 as |layers|}}
   {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+  {{#marker-cluster-layer}}
     {{#each model as |item|}}
-      {{#layers.marker lat=item.lat lng=item.lng as |marker|}}
-        {{#marker.popup}}
+      {{#marker-layer lat=item.lat lng=item.lng}}
+        {{#popup-layer}}
           {{search-result item=item}}
-        {{/marker.popup}}
-      {{/layers.marker}}
+        {{/popup-layer}}
+      {{/marker-layer}}
     {{/each}}
+  {{/marker-cluster-layer}}
+
 {{/leaflet-map}}
 
 
