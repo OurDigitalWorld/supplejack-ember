@@ -6,10 +6,10 @@ export default Ember.Route.extend({
     page: 1,
     per_page: 100,
   },
-  setupController(controller){
+  setupController(){
     this._super(...arguments);
     //set page and per_page to the appropriate values for map searching
-    this.controller.send('updateParams', this.get('mapParams'))
+    this.controller.send('updateParams', this.get('mapParams'));
   },
   actions: {
     willTransition(transition){

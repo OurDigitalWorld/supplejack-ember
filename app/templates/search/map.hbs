@@ -1,16 +1,26 @@
-{{#leaflet-map tagName="main" lat=lat lng=lng zoom=zoom onMoveend=(action "updateCenter") as |layers|}}
-  {{#layers.tooltip}}
-    <h1>Testing</h1>
-  {{/layers.tooltip}}
+<div class="overlay-container">
+    <div class="overlay-content {{if isHidden "hidden"}}">
+        <button class="btn btn-primary" {{action "updateParams" boundingBox}}>Search this area</button>
+    </div>
+</div>
+{{#leaflet-map
+  tagName="main"
+  lat=lat lng=lng
+  zoom=zoom minZoom=minZoom maxZoom=maxZoom
+  worldCopyJump = true
+  onLoad=(action "updateParams" boundingBox)
+  onMoveend=(action "updateCenter")
+as |layers|}}
   {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
-  {{#each model as |item|}}
-    {{#layers.marker lat=item.lat lng=item.lng}}
-      {{#marker.popup}}
-        {{search-result item=item}}
-      {{/marker.popup}}
-    {{/layers.marker}}
-  {{/each}}
+    {{#each model as |item|}}
+      {{#layers.marker lat=item.lat lng=item.lng as |marker|}}
+        {{#marker.popup}}
+          {{search-result item=item}}
+        {{/marker.popup}}
+      {{/layers.marker}}
+    {{/each}}
 {{/leaflet-map}}
+
 
 
 

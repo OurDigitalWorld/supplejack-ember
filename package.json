@@ -41,6 +41,7 @@
     "ember-export-application-global": "^1.0.5",
     "ember-href-to": "1.11.0",
     "ember-leaflet": "3.0.9",
+    "ember-leaflet-marker-cluster": "0.0.5",
     "ember-link-action": "0.0.35",
     "ember-load-initializers": "^0.5.1",
     "ember-math-helpers": "2.0.3",

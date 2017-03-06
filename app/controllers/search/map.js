@@ -7,8 +7,14 @@ export default Ember.Controller.extend({
   lat: 53.014783245859235,
   lng: -96.24023437500001,
   zoom: 5,
-
-
+  minZoom: 2,
+  maxZoom: 15,
+  //stores geo_bbox data in format expected by updateParams action
+  boundingBox: {
+    geo_bbox: ''
+  },
+  //determines whether the 'refresh map' button is visible
+  isHidden: false,
 
   locations: Ember.computed('model', function(){
     console.log(this.get('model'));
@@ -16,7 +22,10 @@ export default Ember.Controller.extend({
 
   actions: {
     updateParams(obj){
-      console.log(obj);
+      //if the geo_bbox is being updated, hide the geo_bbox search button
+      if ('geo_bbox' in obj){
+        this.set('isHidden', true);
+      }
       this.get('application').send('updateParams', obj);
     },
     updateCenter(e){
@@ -25,7 +34,12 @@ export default Ember.Controller.extend({
       this.set('lng', center.lng);
 
       let bounds = e.target.getBounds();
-      const boundingBox = `${bounds.getNorth()},${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()}`;
+      const north = bounds.getNorth() > 180? 180 : bounds.getNorth();
+      const west = bounds.getWest() < -90? -90 : bounds.getWest();
+      const south = bounds.getSouth() < -180? -180 : bounds.getSouth();
+      const east = bounds.getEast() > 90? 90: bounds.getEast();
+      this.set('boundingBox.geo_bbox', `${north},${west},${south},${east}`);
+      this.set('isHidden', false);
     }
   }
 });

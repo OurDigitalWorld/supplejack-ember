@@ -5,6 +5,8 @@
     "ember-cli-shims": "0.1.3",
     "bootstrap": "^3.3.7",
     "leaflet": "^1.0.0",
-    "flexibility": "^2.0.1"
+    "flexibility": "^2.0.1",
+    "Leaflet.contextmenu": "^1.2.1",
+    "leaflet.markercluster": "~1.0.0"
   }
 }
