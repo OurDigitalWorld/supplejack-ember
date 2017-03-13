@@ -10,7 +10,7 @@ param: the variable for the queryParam that allows "and" facet filtering
 onChange=(action onChange): bubbles actions performed by this component up without touching them.
 --}}
 {{#if facetInUse}}
-  <strong>{{title}}</strong> <a href {{action "removeFacet"}}>(remove)</a>
+  <strong>{{title}}</strong> <a href {{action "toggleFacet"}}>(remove)</a>
 {{else}}
-  <a href {{action "addFacet"}}>{{title}}</a>: {{format-number results format="0,0"}}
+  <a href {{action "toggleFacet"}}>{{title}}</a>: {{format-number results format="0,0"}}
 {{/if}}

@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
   per_page: 20,
   //note: and/or/without accept serialized data in the following format:
   //"facet_field:Text to be Filtered,facet_field:Another Filter,"
-  and: '',
+  and: [],
   geo_bbox: '',
 
   //assigns human-readable text values to each of the record model attributes
@@ -59,6 +59,10 @@ export default Ember.Controller.extend({
       for (const key in obj){
         if (!obj.hasOwnProperty(key)) {continue;}
         this.set(key, obj[key]);
+        //needs this to deal with the fact that the route is not listening for changes within objects on query params
+        if (key === 'and'){
+          this.notifyPropertyChange(key);
+        }
       }
     }
   }
