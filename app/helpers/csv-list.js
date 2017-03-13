@@ -8,6 +8,7 @@ import Ember from 'ember';
 
 export function csvList(params/*, hash*/) {
   let [data] = params;
+  if (!Array.isArray(data)){data = [data];}
   let result = "";
   if (typeof data !== 'undefined'){
     if (data.length === 1){

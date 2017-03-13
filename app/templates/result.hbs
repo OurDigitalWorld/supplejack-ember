@@ -11,17 +11,8 @@
   <h2>{{model.title}}</h2>
   <p><a href={{model.source_url}}>View original source</a> contributed by {{model.display_content_partner}}</p>
   <dl>
-    {{!Note: csv-list is applied to any records that have multi-value: true in the schema}}
-    <dt>Creator</dt><dd>{{csv-list model.creator}}</dd>
-    <dt>Description</dt><dd>{{model.description}}</dd>
-    <dt>Publisher</dt><dd>{{model.publisher}}</dd>
-    <dt>Date</dt><dd>{{model.display_date}}</dd>
-    <dt>Category</dt><dd>{{csv-list model.category}}</dd>
-    <dt>Subject</dt><dd>{{csv-list model.subject}}</dd>
-    <dt>Language</dt><dd>{{csv-list model.language}}</dd>
-    <dt>Rights</dt><dd>{{model.rights}}</dd>
+    {{#each application.recordFields as |field|}}
+      <dt>{{field.title}}</dt><dd>{{csv-list (get model field.value)}}</dd>
+    {{/each}}
   </dl>
 </main>
-
-
-

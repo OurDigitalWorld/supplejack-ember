@@ -14,8 +14,11 @@ export default DS.Model.extend({
   rights: DS.attr(),
   publisher: DS.attr(),
   thumbnail_url: DS.attr(),
-  lat: DS.attr(),
-  lng: DS.attr()
+  locations: DS.attr()
+
+  //also edit recordFields in controllers/application to determine which model fields show up:
+  //  - on the single record "results" page
+  //  - as a filterable facet on the sidebar
 
   //note: Available metadata for this model (access in template through model.meta)
   // result_count, per_page, page, facets
