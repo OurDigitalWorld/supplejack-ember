@@ -2,7 +2,7 @@
   <header>
     <section id="site-title">
       {{!link allows you to reset the query params, which is useful because they're normally sticky in Ember}}
-      {{#link-to "search" invokeAction=(action "updateParams" resetParams)}}
+      {{#link-to "search" (query-params page=1 per_page=20 and='' text='' geo_bbox='') current-when="search"}}
         <h1>Supplejack Client</h1>
       {{/link-to}}
     </section>

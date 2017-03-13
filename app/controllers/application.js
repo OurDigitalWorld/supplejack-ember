@@ -1,27 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['page', 'text', 'per_page', 'and', 'or', 'without', 'geo_bbox'],
+  queryParams: ['page', 'text', 'per_page', 'and', 'geo_bbox'],
   page: 1,
   text: '',
   per_page: 20,
   //note: and/or/without accept serialized data in the following format:
   //"facet_field:Text to be Filtered,facet_field:Another Filter,"
   and: '',
-  or: '',
-  without: '',
   geo_bbox: '',
-
-  //this object can be passed to updateParams to clear all set params.
-  resetParams: {
-    page: 1,
-    text: '',
-    per_page: 20,
-    and: '',
-    or: '',
-    without: '',
-    geo_bbox: '',
-  },
 
   //assigns human-readable text values to each of the record model attributes
   //This and the models/record.js file are the two places that need editing in the
