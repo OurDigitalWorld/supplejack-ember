@@ -10,6 +10,11 @@ export default Ember.Component.extend({
   alt: '',
 
   didInsertElement: function() {
+    //specifically to deal with the fact that DigitalNZ's database returns "Unknown" on any thumbnail_url without a value
+    //this is not necessary for our own Supplejack install, but also doesn't really do any harm!
+    if (this.get('src') === 'Unknown'){
+      this.set('src', null);
+    }
     //set placeholder if thumb_url doesn't exist
     if (this.get('src') === null){
       this.set('isBroken', true);

@@ -181,22 +181,25 @@ div#body-container{
   }
 }
 
-
 //-----RESPONSIVE-----
 //media queries for full site
 @media(max-width: $screen-md){
+  //allows search bar to appear below header
   header{flex-wrap:wrap;}
+  //places filters above search results instead of on left
   div#body-container{
     flex-direction: column;
     width: 100%;
     align-content: flex-start;
     >*{margin: $margin-standard 0;}
   }
+  //button to toggle filters appears
   .aside-toggle {display:block;}
   aside{
     max-width: 100%;
     min-width: 100%;
     width: 100%;
+    //filters are hidden by default
     .facet-categories{
       display:none;
       &.visible{display:block;}
@@ -206,6 +209,7 @@ div#body-container{
     min-height: 0;
   }
 }
+//moves thumbnail above search result on small screens / on map search
 @media(max-width: $screen-xs){@include search-result-small()}
 .leaflet-popup-content{
   @include search-result-small();
