@@ -1,11 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  application: Ember.inject.controller('application'),
-  textParamReceiver: {},
+  search: Ember.inject.controller('search'),
   actions:{
     updateParams(obj){
-      this.get('application').send('updateParams', obj);
+      this.get('search').send('updateParams', obj);
     }
   }
 });

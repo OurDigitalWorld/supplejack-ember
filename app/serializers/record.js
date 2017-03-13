@@ -14,7 +14,6 @@ export default DS.JSONSerializer.extend({
       meta.page = payload.search.page;
       meta.facets = payload.search.facets;
       this.set('metaData', meta);
-      console.log(payload.search.results);
       return this._super(store, primaryModelClass, payload.search.results, id, requestType);
     }
     //deserialization for single page

@@ -11,7 +11,7 @@
   <h2>{{model.title}}</h2>
   <p><a href={{model.source_url}}>View original source</a> contributed by {{model.display_content_partner}}</p>
   <dl>
-    {{#each application.recordFields as |field|}}
+    {{#each search.recordFields as |field|}}
       <dt>{{field.title}}</dt><dd>{{csv-list (get model field.value)}}</dd>
     {{/each}}
   </dl>

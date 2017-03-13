@@ -1,9 +1,9 @@
 {{#ember-wormhole to="left-sidebar"}}
-  {{search-facets meta=model.meta param=application.and onChange=(action "updateParams")}}
+  {{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
 {{/ember-wormhole}}
 
 {{#ember-wormhole to="search-bar"}}
-  {{search-searchbar param=application.text onChange=(action "updateParams")}}
+  {{search-searchbar param=text onChange=(action "updateParams")}}
 {{/ember-wormhole}}
 
 

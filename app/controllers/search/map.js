@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  application: Ember.inject.controller('application'),
-  textParamStorage: {},
+  search: Ember.inject.controller('search'),
   queryParams: ['lat', 'lng', 'zoom'],
   //leaflet variables - should eventually be moved to new controller
   lat: 53.014783245859235,
@@ -17,17 +16,13 @@ export default Ember.Controller.extend({
   //determines whether the 'refresh map' button is visible
   isHidden: false,
 
-  locations: Ember.computed('model', function(){
-    console.log(this.get('model'));
-  }),
-
   actions: {
     updateParams(obj){
       //if the geo_bbox is being updated, hide the geo_bbox search button
       if ('geo_bbox' in obj){
         this.set('isHidden', true);
       }
-      this.get('application').send('updateParams', obj);
+      this.get('search').send('updateParams', obj);
     },
     updateCenter(e){
       let center = e.target.getCenter();
