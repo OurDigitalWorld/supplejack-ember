@@ -11,13 +11,15 @@ export default Ember.Controller.extend({
   maxZoom: 15,
   //stores geo_bbox data in format expected by updateParams action
   boundingBox: {
-    geo_bbox: ''
+    geo_bbox: '0,0,0,0'
   },
   //determines whether the 'refresh map' button is visible
   isHidden: false,
 
   actions: {
     updateParams(obj){
+      //unload all data before fetching, because marker-cluster isn't good at dealing with old data.
+      this.get('store').unloadAll();
       //if the geo_bbox is being updated, hide the geo_bbox search button
       if ('geo_bbox' in obj){
         this.set('isHidden', true);
@@ -31,9 +33,9 @@ export default Ember.Controller.extend({
       this.set('zoom', e.target.getZoom());
 
       let bounds = e.target.getBounds();
-      const north = bounds.getNorth() > 90? 90 : bounds.getNorth();
+      const north = bounds.getNorth() > 85? 58 : bounds.getNorth();
       const west = bounds.getWest() < -180? -180 : bounds.getWest();
-      const south = bounds.getSouth() < -90? -90 : bounds.getSouth();
+      const south = bounds.getSouth() < -85? -85 : bounds.getSouth();
       const east = bounds.getEast() > 180? 180: bounds.getEast();
 
       this.set('boundingBox.geo_bbox', `${north},${west},${south},${east}`);

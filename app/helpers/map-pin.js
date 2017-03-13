@@ -12,6 +12,7 @@ import Ember from 'ember';
 export function mapPin(params/*, hash*/) {
   let location = params[0];
   let bounds = params[1];
+  let obj = {lat:0, lng:0};
   //guardian to remove empty results
   if (bounds && location.length > 0){
     //split bounds into locations
@@ -25,11 +26,14 @@ export function mapPin(params/*, hash*/) {
       if (item.lat && item.lng){
         if (item.lat < north && item.lat > south && item.lng < east && item.lng > west){
           //return first match
-          return {lat:item.lat, lng:item.lng}
+          obj.lat = item.lat;
+          obj.lng = item.lng;
+          break;
         }
       }
     }
   }
+  return obj;
 }
 
 export default Ember.Helper.helper(mapPin);

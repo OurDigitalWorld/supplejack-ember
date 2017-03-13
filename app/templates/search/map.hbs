@@ -15,17 +15,19 @@
   lat=lat lng=lng
   zoom=zoom minZoom=minZoom maxZoom=maxZoom
   worldCopyJump = true
-  onLoad=(action "updateParams" boundingBox)
   onMoveend=(action "updateCenter")
+  onLoad=(action "updateParams" boundingBox)
 as |layers|}}
   {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
   {{#marker-cluster-layer}}
     {{#each model as |item|}}
-      {{#marker-layer lat=item.lat lng=item.lng}}
-        {{#popup-layer}}
-          {{search-result item=item}}
-        {{/popup-layer}}
-      {{/marker-layer}}
+      {{#if item.locations}}
+        {{#marker-layer location=(map-pin item.locations search.geo_bbox)}}
+          {{#popup-layer}}
+            {{search-result item=item}}
+          {{/popup-layer}}
+        {{/marker-layer}}
+      {{/if}}
     {{/each}}
   {{/marker-cluster-layer}}
 
