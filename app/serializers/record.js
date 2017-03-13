@@ -2,9 +2,9 @@ import DS from 'ember-data';
 import ENV from 'supplejack-client/config/environment';
 
 export default DS.JSONSerializer.extend({
+  primaryKey: ENV.APP.primaryKey,
   metaData: {},
   normalizeResponse(store, primaryModelClass, payload, id, requestType){
-    primaryKey: ENV.APP.PrimaryKey;
     //deserialization for search results
     if (payload.hasOwnProperty('search')) {
       //grabs the metadata before normalizing it all away
