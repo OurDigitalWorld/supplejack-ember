@@ -19,7 +19,11 @@ const FacetLinkComponent = Ember.Component.extend({
       const facet = this.get('facet');
       const title = this.get('title');
       if (param[facet]){
-        param[facet].includes(title) ? this.set('facetInUse', true) : this.set('facetInUse', false);
+        if (param[facet].includes(title)){
+          this.set('facetInUse', true);
+        } else {
+          this.set('facetInUse', false);
+        }
       } else {
         this.set('facetInUse', false);
       }
@@ -29,11 +33,10 @@ const FacetLinkComponent = Ember.Component.extend({
       const facet = this.get('facet');
       const title = this.get('title');
       let newParams = Array.isArray(this.get('param')) ? {} : this.get('param');
-
       if (this.get('facetInUse')){
         //if item already exists, remove it.
         const i = newParams[facet].indexOf(title);
-        if (i != -1){
+        if (i !== -1){
           newParams[facet].splice(i,1);
         }
         //if no items exist for this facet, remove facet
