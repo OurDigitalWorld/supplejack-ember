@@ -6,11 +6,23 @@ const FacetCategoryComponent = Ember.Component.extend({
   },
   showAll: false,
   hasHidden: true,
-  filteredOptions: Ember.computed('options', 'showAll', function(){
+  filteredOptions: Ember.computed('options', 'showAll', 'param', function(){
+    let options = this.get('options');
+
+    //add filters that appear in the url but not in the options
+    let currentFilters = this.get(`param.${this.get('facet')}`);
+    if (typeof currentFilters !== 'undefined'){
+      for (const filter of currentFilters){
+        if (!(filter in this.get('options'))){
+          options[filter] = 0;
+        }
+      }
+    }
+    //if the 'show all' button is clicked, show every link available in metadata
     if (this.get('showAll')){
-      return this.get('options');
+      return options;
+    //otherwise, do complicated math to show only the highest one or more orders of maginitude which result in at least 3 options appearing.
     } else {
-      const options = this.get('options');
       let OoMsArray = [];
       let OoMsSet = new Set();
       let magArray = [];
