@@ -1,12 +1,12 @@
 <li class="facet-category">
-  <span class="facet-category-name">{{facet}}</span>
+  <span class="facet-category-name">{{t (concat 'field.title.' facet)}}</span>
   <ul class="facet-items">
     {{#each-in filteredOptions as |title results|}}
       {{facet-link facet title results param onChange=(action onChange)}}
     {{/each-in}}
     {{#if hasHidden}}
       <li class="show-more">
-        <a {{action "toggleShowAll"}}>{{if showAll "- see less" "+ see more"}}</a>
+        <a {{action "toggleShowAll"}}>{{if showAll (t "facets.toggle.seeLess") (t "facets.toggle.seeMore")}}</a>
       </li>
     {{/if}}
   </ul>

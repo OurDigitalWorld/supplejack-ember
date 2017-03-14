@@ -7,7 +7,7 @@ Syntax: {{search-pagination meta=model.meta}}
 <li class={{if (eq meta.page 1) "disabled"}}>
   {{#link-to (query-params page=(sub meta.page 1)) disabled=(eq meta.page 1)}}
     <span class="aria-hidden">&lt;&lt;</span>
-    <span class="sr-only">previous</span>
+    <span class="sr-only">{{t "searchResults.pagination.previous"}}</span>
   {{/link-to}}
 </li>
 {{! first page}}
@@ -32,7 +32,7 @@ Syntax: {{search-pagination meta=model.meta}}
 <li class={{if (eq meta.page lastPage) "disabled"}}>
   {{#link-to (query-params page=(add meta.page 1)) disabled=(eq meta.page lastPage)}}
     <span class="aria-hidden">&gt;&gt;</span>
-    <span class="sr-only">previous</span>
+    <span class="sr-only">{{t "searchResults.pagination.next"}}</span>
   {{/link-to}}
 </li>
 

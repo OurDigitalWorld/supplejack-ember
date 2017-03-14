@@ -15,12 +15,12 @@ onChange: action to be executed when queryParams are changed by this component.
 {{#if facetsHideable}}
   <button class="btn-block text-center btn-primary" {{action "toggleFacets"}}>
     {{#if facetsVisible}}
-      Hide Filters <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+      {{t "facets.toggle.hide"}} <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
     {{else}}
       {{#if (gt filterNumber 0)}}
         <span class="badge">{{filterNumber}}</span>
       {{/if}}
-      Show Filters <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      {{t "facets.toggle.show"}} <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
     {{/if}}
   </button>
 {{/if}}

@@ -25,7 +25,7 @@
           perPage=meta.per_page
         )}}
 {{#if showDropdown}}
-    <label for="results-per-page">Results per page</label>
+    <label for="results-per-page">{{t "searchResults.stats.resultsPerPage"}}</label>
     <select id="results-per-page" class="form-control input-sm" onchange={{action "selectOffset" value="target.value"}}>
       {{#each offsetOptions as |option|}}
           <option value={{option.value}} selected={{eq offsetAmount option.value}}>

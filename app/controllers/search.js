@@ -13,15 +13,16 @@ export default Ember.Controller.extend({
   //Attributes that will appear in the descriptive list on the (single record) result page
   //if a given attribute should also be a filterable facet, add 'facet:true' to its object.
   recordFields: [
-    {value: 'creator', title: 'Creator'},
-    {value: 'description', title: 'Description'},
-    {value: 'subject', title: 'Subject', facet:true},
-    {value: 'display_collection', title: 'Collection'},
-    {value: 'display_date', title: 'Date'},
-    {value: 'category', title: 'Category'},
-    {value: 'language', title: 'Language', facet:true},
-    {value: 'publisher', title: 'Publisher'}
+    {value: 'creator'},
+    {value: 'description'},
+    {value: 'subject', facet:true},
+    {value: 'display_collection'},
+    {value: 'display_date'},
+    {value: 'category'},
+    {value: 'language', facet:true},
+    {value: 'publisher'}
   ],
+
   //all record fields that are a facet. USED IN ROUTES/APPLICATION
   recordFacets: Ember.computed('recordFields.[]', function(){
     const facetArray = this.get('recordFields').filterBy('facet', true);

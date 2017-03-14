@@ -1,13 +1,14 @@
 {{#search-result-stats meta=model.meta onChange=(action "updateParams") as |stat|}}
   {{#if (lte stat.results 100)}}
-    Displaying {{stat.formattedResults}} results.
+    {{t "searchResults.stats.displayingResults" results=stat.formattedResults}}
   {{else}}
-    Displaying {{stat.perPage}} of {{stat.formattedResults}} results. Zoom in or narrow your search results, then click "Search this area" to view additional results.
+    {{t "searchResults.stats.displayingPartialResults" perPage=stat.perPage totalResults=stat.formattedResults}}
+    {{t "searchResults.stats.narrowMapResultsMessage"}}
   {{/if}}
 {{/search-result-stats}}
 <div class="overlay-container">
     <div class="overlay-content {{if isHidden "hidden"}}">
-        <button class="btn btn-primary" {{action "updateParams" boundingBox}}>Search this area</button>
+        <button class="btn btn-primary" {{action "updateParams" boundingBox}}>{{t "searchResults.map.searchArea"}}</button>
     </div>
 </div>
 {{#leaflet-map

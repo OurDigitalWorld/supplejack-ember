@@ -1,18 +1,18 @@
 {{#ember-wormhole to="search-bar"}}
-  <button class="btn btn-default" {{action 'back'}}>&lt;&lt; Back to Search Results</button>
+  <button class="btn btn-default" {{action 'back'}}>&lt;&lt; {{t "searchResults.result.back"}}</button>
 {{/ember-wormhole}}
 {{#ember-wormhole to="left-sidebar"}}
   <img class="result-thumbnail" src={{model.thumbnail_url}}>
-  <h3>Share</h3>
+  <h3>{{t "searchResults.result.share"}}</h3>
   {{share-panel title="" buttons="fb,twitter,linkedin,instagram"}}
 {{/ember-wormhole}}
 
 <main>
   <h2>{{model.title}}</h2>
-  <p><a href={{model.source_url}}>View original source</a> contributed by {{model.display_content_partner}}</p>
+  <p>{{{t "searchResults.result.originalSource" url=model.source_url contributor=model.display_content_partner}}}</p>
   <dl>
     {{#each search.recordFields as |field|}}
-      <dt>{{field.title}}</dt><dd>{{csv-list (get model field.value)}}</dd>
+      <dt>{{t (concat 'field.title.' field.value)}}</dt><dd>{{csv-list (get model field.value)}}</dd>
     {{/each}}
   </dl>
 </main>

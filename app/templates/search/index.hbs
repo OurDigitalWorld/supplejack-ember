@@ -1,15 +1,15 @@
 {{!{{search-pagination meta=model.meta onChange=(action "updateParams") display="offset"}}
 {{#search-result-stats meta=model.meta showDropdown=true onChange=(action "updateParams") as |stat|}}
-    Page {{stat.formattedPage}} of {{stat.formattedResults}} results.
+    {{t "searchResults.stats.pageOfResults" pageNumber=stat.formattedPage totalResults=stat.formattedResults}}
 {{/search-result-stats}}
 <main>
-  <h2 class="sr-only">Search Results</h2>
+  <h2 class="sr-only">{{t "searchResults.title"}}</h2>
   {{#each model as |item|}}
     {{search-result item=item}}
   {{/each}}
   {{#if (eq model.length 0)}}
-    <h2>Sorry, no results found.</h2>
-    <p>Try simplifying your search results or removing some filters!</p>
+    <h2>{{t "searchResults.noResults.title"}}</h2>
+    <p>{{t "searchResults.noResults.advice"}}</p>
   {{/if}}
 </main>
 {{search-pagination meta=model.meta}}

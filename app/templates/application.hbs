@@ -3,7 +3,7 @@
     <section id="site-title">
       {{!link allows you to reset the query params, which is useful because they're normally sticky in Ember}}
       {{#link-to "search" (query-params page=1 per_page=20 and='' text='' geo_bbox='') current-when="search"}}
-        <h1>Supplejack Client</h1>
+        <h1>{{t "site.title" siteName="Supplejack"}}</h1>
       {{/link-to}}
     </section>
     <section id="search-bar"></section>
@@ -15,8 +15,10 @@
     <aside id="left-sidebar"></aside>
   </div>
   <footer>
-    {{#scroll-to class="pull-right" id="return-to-top" href="#site-title" duration=250}}
-      Return to top <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+    {{#set-language language="en" locale=(get this.i18n 'locale') onChange=(action "setLocale")}}English{{/set-language}}
+    {{#set-language language="fr" locale=(get this.i18n 'locale') onChange=(action "setLocale")}}Français{{/set-language}}
+      {{#scroll-to class="pull-right" id="return-to-top" href="#site-title" duration=250}}
+      {{t "site.footer.toTop"}} <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
     {{/scroll-to}}
   </footer>
 </div>
