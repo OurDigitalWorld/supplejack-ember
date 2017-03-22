@@ -16,11 +16,12 @@ export default Ember.Controller.extend({
     {value: 'creator'},
     {value: 'description'},
     {value: 'subject', facet:true},
-    {value: 'display_collection', facet:true},
+    {value: 'display_collection'},
     {value: 'display_date'},
     {value: 'category'},
     {value: 'language', facet:true},
-    {value: 'publisher'}
+    {value: 'publisher'},
+    {value: 'display_content_partner', facet:true}
   ],
 
   //all record fields that are a facet. USED IN ROUTES/APPLICATION

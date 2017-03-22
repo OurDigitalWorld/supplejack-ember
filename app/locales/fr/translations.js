@@ -58,7 +58,8 @@ export default {
       "display_date" : "Date",
       "category" : "Catégorie",
       "language" : "Langue",
-      "publisher" : "Éditeur"
+      "publisher" : "Éditeur",
+      "display_content_partner" : "Partenaire de contenu"
     }
   }
 };
