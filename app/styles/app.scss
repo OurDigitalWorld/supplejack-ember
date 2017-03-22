@@ -21,7 +21,7 @@ $aside-width: 260px;
       >h3 {
         margin-top: 0;
       }
-    }
+    },
     .search-thumbnail{
       margin: 0;
     }
@@ -61,6 +61,7 @@ aside{
 //surrogate formatting
 .search-thumbnail{
   margin: $margin-standard;
+  padding-top: $margin-standard;
   width: ($image-width);
   max-height: ($image-width);
   overflow: hidden;
