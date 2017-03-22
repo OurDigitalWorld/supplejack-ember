@@ -16,7 +16,6 @@ export default Ember.Controller.extend({
     {value: 'creator'},
     {value: 'description'},
     {value: 'subject', facet:true},
-    {value: 'display_collection'},
     {value: 'display_date'},
     {value: 'category'},
     {value: 'language', facet:true},
