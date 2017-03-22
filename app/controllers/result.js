@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
     // which is a signal the RouterScroll mixin needs to know that it should return to the previous scroll position
     back(){
       history.back();
+
     }
   }
 });
