@@ -1,6 +1,7 @@
 export default {
   "site": {
-    "title" : "{{siteName}} Client",
+    "subtitle" : "Discovery Layer",
+    "gitHubFork" : "Fork me on GitHub",
     "searchBar" : {
       "input" : "Enter search text",
       "submit" : "Execute Search"

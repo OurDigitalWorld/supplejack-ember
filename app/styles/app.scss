@@ -1,14 +1,18 @@
 //redefine bootstrap defaults
 $text-muted: lightgray;
+$screen-xl: 1400px;
 
 @import "ember-bootstrap/bootstrap";
 
 //set custom variables
 $margin-standard: 10px;
 $margin-wide: (2 * $margin-standard);
+$image-width-title: 50px;
 $image-width: 150px;
 $image-placeholder: '/assets/thumb_placeholder.gif';
 $aside-width: 260px;
+$main-width: 1000px;
+
 
 @mixin search-result-small() {
   .search-result{
@@ -31,6 +35,57 @@ $aside-width: 260px;
 //-----STYLE-----
 //HEADER
 
+#site-title {
+  > * {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    #title-img-container {
+      max-width: $image-width-title;
+      margin-left:$margin-standard;
+      img {width: 100%;}
+    }
+    #title-text-container {
+      flex-grow: 1;
+      > * {
+        font-weight: bold;
+        margin: 0;
+      }
+      h1 {
+        font-size: 32px;
+        line-height: 70%;
+      }
+      .subtitle {
+        font-size: 19px;
+        line-height: 90%;
+      }
+    }
+  }
+}
+
+//github fork me ribbon animation
+.github-corner:hover .octo-arm{
+  animation:octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave{
+  0%,100%{
+    transform:rotate(0);
+  }
+  20%,60%{
+    transform:rotate(-25deg);
+  }40%,80%{
+       transform:rotate(10deg);
+  }
+}
+@media (max-width:500px){
+  .github-corner:hover .octo-arm{
+    animation:none;
+  }
+  .github-corner .octo-arm{
+    animation:octocat-wave 560ms ease-in-out;
+  }
+}
 
 //SEARCH
 //aside formatting
@@ -140,8 +195,10 @@ header{
   #search-bar{
     margin: $margin-standard;
     flex: 1 1 auto;
-    width: 100%;
-    max-width: 1000px;
+    max-width: $main-width;
+    > * {
+      width: 92%; //to leave room for github ribbon
+    }
   }
 }
 footer{
@@ -161,7 +218,7 @@ div#body-container{
     flex:1 1 auto;
     display: flex;
     flex-direction: column;
-    max-width: 1000px;
+    max-width: $main-width;
     .leaflet-container{
       flex: 1 0 auto;
     }
@@ -185,7 +242,10 @@ div#body-container{
 //media queries for full site
 @media(max-width: $screen-md){
   //allows search bar to appear below header
-  header{flex-wrap:wrap;}
+  header{
+    flex-wrap:wrap;
+    #search-bar > * {width: 100%;}
+  }
   //places filters above search results instead of on left
   div#body-container{
     flex-direction: column;
@@ -213,4 +273,8 @@ div#body-container{
 @media(max-width: $screen-xs){@include search-result-small()}
 .leaflet-popup-content{
   @include search-result-small();
+}
+//stops leaving room for github ribbon when screen is really wide
+@media(min-width: $screen-xl){
+  header #search-bar > * {width:100%;}
 }

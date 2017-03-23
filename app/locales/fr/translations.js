@@ -1,6 +1,7 @@
 export default {
   "site": {
-    "title": "Client {{siteName}}",
+    "subtitle": "couche de découverte",
+    "gitHubFork": "Fourchez moi sur GitHub",
     "searchBar" : {
       "input" : "Texte de recherche d'entrée",
       "submit" : "Exécuter la recherche"
