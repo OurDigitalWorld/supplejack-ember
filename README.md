@@ -48,6 +48,7 @@ Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
+* [Demo site](http://159.203.21.122/search)
 * [ember.js](http://emberjs.com/)
 * [ember-cli](https://ember-cli.com/)
 * Development Browser Extensions
