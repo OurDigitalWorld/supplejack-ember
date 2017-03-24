@@ -1,0 +1,24 @@
+<div class="facet-category-name">Date</div>
+{{#bs-button-group
+  value=isDisabled
+  type="radio"
+  onChange=(action 'toggleSlider')
+as |bg|}}
+  {{#bg.button value=true}}All dates{{/bg.button}}
+  {{#bg.button value=false}}Select range{{/bg.button}}
+{{/bs-button-group}}
+  {{range-slider
+    start=dateStart
+    range=dateRange
+    connect=true
+    step=1
+    class='date-slider'
+    disabled=isDisabled
+    on-update=(action "updateDate")
+    on-change=(action "executeSearch")
+  }}
+{{#if isDisabled}}
+  <p>Displaying records from all dates.</p>
+{{else}}
+  <p>Records between <strong>{{selectedDates.[0]}}</strong> and <strong>{{selectedDates.[1]}}</strong>.</p>
+{{/if}}

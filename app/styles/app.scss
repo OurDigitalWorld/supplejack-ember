@@ -98,9 +98,6 @@ aside{
     padding: 0;
     a {&:hover{text-decoration:none;}}
     li.facet-category{
-      .facet-category-name{
-        font-weight: bold;
-      }
       li.show-more{
         cursor: pointer;
       }
@@ -110,6 +107,12 @@ aside{
       padding: 0 $margin-standard;
     }
   }
+}
+.facet-category-name{
+  font-weight: bold;
+}
+.date-slider{
+  margin: $margin-standard;
 }
 //search-pagination
 

@@ -24,7 +24,7 @@
     <aside id="left-sidebar"></aside>
   </div>
   <footer>
-    {{#set-language language="en" locale=(get this.i18n 'locale') onChange=(action "setLocale")}}English{{/set-language}}
+    {{#set-language language="en" locale=(get this.i18n 'locale') onChange=(action "setLocale")}}English{{/set-language}} |
     {{#set-language language="fr" locale=(get this.i18n 'locale') onChange=(action "setLocale")}}Français{{/set-language}}
     {{#scroll-to class="pull-right" id="return-to-top" href="#site-title" duration=250}}
       {{t "site.footer.toTop"}} <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>

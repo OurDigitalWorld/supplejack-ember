@@ -32,6 +32,7 @@ const FacetLinkComponent = Ember.Component.extend({
     toggleFacet(){
       const facet = this.get('facet');
       const title = this.get('title');
+      //prevents errors caused by the fact that ember is treating the empty param as an array and not an object
       let newParams = Array.isArray(this.get('param')) ? {} : this.get('param');
       if (this.get('facetInUse')){
         //if item already exists, remove it.

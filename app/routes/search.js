@@ -13,7 +13,8 @@ export default Ember.Route.extend({
     }
     //basic validation on 'and' --- only allows designated facets to be filtered.
     if (params.and){
-      const validFields = this.controllerFor('search').get('recordFacets').split(',');
+      let validFields = this.controllerFor('search').get('recordFacets').split(',');
+      validFields.push('year');
       for (const key in params.and){
         if (!params.and.hasOwnProperty(key)){continue;}
         if (!validFields.includes(key)){delete params.and[key];}
@@ -48,6 +49,6 @@ export default Ember.Route.extend({
     // we can pass serialized objects into these 3 params in ember, and then deserialize them just before
     // passing them to the API.
     and: {refreshModel: true},
-    geo_bbox: {refreshModel: true},
+    geo_bbox: {refreshModel: true}
   }
 });

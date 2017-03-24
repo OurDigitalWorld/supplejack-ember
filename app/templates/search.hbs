@@ -8,6 +8,7 @@
 </a>
 
 {{#ember-wormhole to="left-sidebar"}}
+  {{date-picker param=and onChange=(action "updateParams")}}
   {{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
 {{/ember-wormhole}}
 
