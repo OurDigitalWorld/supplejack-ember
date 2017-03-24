@@ -7,7 +7,7 @@ export default DS.RESTAdapter.extend({
   //supplejack's find record spec doesn't quite match a standard REST interface
   urlForFindRecord(id, modelName){
     let baseUrl = this.buildURL();
-    return `${baseUrl}/${modelName}s/${id}.json?api_key=${ENV.APP.api_key}&fields=all`;
+    return `${baseUrl}/${modelName}s/${id}.json?api_key=${ENV.APP.api_key}&fields=${ENV.APP.resultFields}`;
   }
   });
 
