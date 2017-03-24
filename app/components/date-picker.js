@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['date-picker'],
+
   didReceiveAttrs(){
     this._super(...arguments);
     const param = this.get('param');
