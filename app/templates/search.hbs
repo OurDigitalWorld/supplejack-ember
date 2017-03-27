@@ -8,7 +8,7 @@
 </a>
 
 {{#ember-wormhole to="left-sidebar"}}
-  {{search-facets meta=model.meta param=and onChange=(action "updateParams")}}
+  {{search-facets meta=model.meta param=and options=facetFields onChange=(action "updateParams")}}
 {{/ember-wormhole}}
 
 {{#ember-wormhole to="search-bar"}}
@@ -26,6 +26,8 @@
   </ul>
 
 {{outlet}}
+
+
 
 
 

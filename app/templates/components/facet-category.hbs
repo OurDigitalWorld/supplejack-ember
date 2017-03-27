@@ -1,8 +1,8 @@
 <li class="facet-category">
-  <span class="facet-category-name">{{t (concat 'field.title.' facet)}}</span>
+  <span class="facet-category-name">{{t (concat 'field.title.' category)}}</span>
   <ul class="facet-items">
     {{#each-in filteredOptions as |title results|}}
-      {{facet-link facet title results param onChange=(action onChange)}}
+      {{facet-link category title results param onChange=(action onChange)}}
     {{/each-in}}
     {{#if hasHidden}}
       <li class="show-more">

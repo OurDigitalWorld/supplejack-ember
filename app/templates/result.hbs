@@ -11,8 +11,8 @@
   <h2>{{model.title}}</h2>
   <p>{{{t "searchResults.result.originalSource" url=model.source_url contributor=model.display_content_partner}}}</p>
   <dl>
-    {{#each search.recordFields as |field|}}
-      <dt>{{t (concat 'field.title.' field.value)}}</dt><dd>{{csv-list (get model field.value)}}</dd>
+    {{#each recordFields as |field|}}
+      <dt>{{t (concat 'field.title.' field)}}</dt><dd>{{csv-list (get model field)}}</dd>
     {{/each}}
   </dl>
 </main>

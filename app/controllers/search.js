@@ -10,26 +10,25 @@ export default Ember.Controller.extend({
   and: [],
   geo_bbox: '',
 
-  //Attributes that will appear in the descriptive list on the (single record) result page
-  //if a given attribute should also be a filterable facet, add 'facet:true' to its object.
-  recordFields: [
-    {value: 'creator'},
-    {value: 'description'},
-    {value: 'subject', facet:true},
-    {value: 'display_date'},
-    {value: 'category'},
-    {value: 'language', facet:true},
-    {value: 'publisher'},
-    {value: 'display_content_partner', facet:true}
-  ],
+  //Add keys for each facet you want here -- used by recordFacets (below), and is passed down search-facets > facet-category
+  //Available options:
+  //  show:
+  //    'all' -> always shows all facets, up to the limit of the number of facets retrieved from Supplejack (defined in routes/search.js)
+  //    'none' -> shows no facets by default, but shows all of them if you click the 'see more +' button.
+  //    <integer> -> will show a minimum of this number of results, rounded up to the nearest order of magnitude
+  facetFields: {
+    'display_content_partner' : {show: 'all'},
+    'subject' : {},
+    'language' : {show: 'none'}
+  },
 
   //all record fields that are a facet. USED IN ROUTES/APPLICATION
   recordFacets: Ember.computed('recordFields.[]', function(){
-    const facetArray = this.get('recordFields').filterBy('facet', true);
     let facetString = '';
-    facetArray.forEach((facet)=>{
-      facetString += facet.value + ',';
-    });
+    for (const key in this.get('facetFields')){
+      if (!this.get('facetFields').hasOwnProperty(key)){continue;}
+      facetString += key + ',';
+    }
     facetString = facetString.slice(0,-1);
     return facetString;
   }),

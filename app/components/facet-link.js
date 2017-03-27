@@ -16,10 +16,10 @@ const FacetLinkComponent = Ember.Component.extend({
     //if facet already exists, set facetInUse to true.  Otherwise, set to false.
     setState(){
       const param = this.get('param');
-      const facet = this.get('facet');
+      const category = this.get('category');
       const title = this.get('title');
-      if (param[facet]){
-        if (param[facet].includes(title)){
+      if (param[category]){
+        if (param[category].includes(title)){
           this.set('facetInUse', true);
         } else {
           this.set('facetInUse', false);
@@ -30,25 +30,25 @@ const FacetLinkComponent = Ember.Component.extend({
     },
     //adds new facet search or deletes existing one
     toggleFacet(){
-      const facet = this.get('facet');
+      const category = this.get('category');
       const title = this.get('title');
       //prevents errors caused by the fact that ember is treating the empty param as an array and not an object
       let newParams = Array.isArray(this.get('param')) ? {} : this.get('param');
       if (this.get('facetInUse')){
         //if item already exists, remove it.
-        const i = newParams[facet].indexOf(title);
+        const i = newParams[category].indexOf(title);
         if (i !== -1){
-          newParams[facet].splice(i,1);
+          newParams[category].splice(i,1);
         }
         //if no items exist for this facet, remove facet
-        if (newParams[facet].length === 0){
-          delete newParams[facet];
+        if (newParams[category].length === 0){
+          delete newParams[category];
         }
       } else {
         //if facet doesn't exist, add it
-        if (!newParams[facet]){newParams[facet]=[];}
+        if (!newParams[category]){newParams[category]=[];}
         //add value to facet
-        newParams[facet].push(title);
+        newParams[category].push(title);
       }
       //if nothing is left in the params object, change to empty string so it won't be url-encoded
       if (Object.keys(newParams).length === 0){
@@ -66,7 +66,7 @@ const FacetLinkComponent = Ember.Component.extend({
 });
 
 FacetLinkComponent.reopenClass({
-  positionalParams: ['facet', 'title', 'results', 'param']
+  positionalParams: ['category', 'title', 'results', 'param']
 });
 
 export default FacetLinkComponent;
