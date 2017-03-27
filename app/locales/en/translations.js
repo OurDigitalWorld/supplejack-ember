@@ -62,5 +62,15 @@ export default {
       "publisher" : "Publisher",
       "display_content_partner" : "Content Partner"
     }
+  },
+  "dates" : {
+    "filter" : {
+      "all" : "All dates",
+      "range" : "Select range"
+    },
+    "display" : {
+      "all" : "Displaying records from all dates.",
+      "range" : `Records between&nbsp;<strong>{{startDate}}</strong>&nbsp;and&nbsp;<strong>{{endDate}}</strong>.`
+    }
   }
 };

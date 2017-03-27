@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['date-picker'],
+  //added facet-items here so that search-facets will update the badge value when filter dates
+  classNames: ['date-picker', 'facet-items'],
 
   didReceiveAttrs(){
     this._super(...arguments);
@@ -28,7 +29,7 @@ export default Ember.Component.extend({
     return {
       min: this.get('startYear'),
       max: this.get('endYear')
-    }
+    };
   }),
   selectedDates: ['????', '????'],
 

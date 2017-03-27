@@ -3,8 +3,8 @@
   type="radio"
   onChange=(action 'toggleSlider')
 as |bg|}}
-  {{#bg.button value=true}}All dates{{/bg.button}}
-  {{#bg.button value=false}}Select range{{/bg.button}}
+  {{#bg.button value=true}}{{t "dates.filter.all"}}{{/bg.button}}
+  {{#bg.button value=false}}{{t "dates.filter.range"}}{{/bg.button}}
 {{/bs-button-group}}
 {{range-slider
   start=dateStart
@@ -17,7 +17,8 @@ as |bg|}}
   on-change=(action "executeSearch")
 }}
 {{#if isDisabled}}
-  <p>Displaying records from all dates.</p>
+  <p>{{t "dates.display.all"}}</p>
 {{else}}
-  <p>Records between&nbsp;<strong>{{selectedDates.[0]}}</strong>&nbsp;and&nbsp;<strong>{{selectedDates.[1]}}</strong>.</p>
+  {{!-- setting class to active here so that search-facets will update the filter badge on mobile layouts --}}
+  <p class="active">{{t "dates.display.range" startDate=selectedDates.[0] endDate=selectedDates.[1]}}</p>
 {{/if}}

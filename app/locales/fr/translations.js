@@ -62,5 +62,15 @@ export default {
       "publisher" : "Éditeur",
       "display_content_partner" : "Partenaire de contenu"
     }
+  },
+  "dates" : {
+    "filter" : {
+      "all" : "Toutes les dates",
+      "range" : "Sélectionner une série"
+    },
+    "display" : {
+      "all" : "Affichage des enregistrements de toutes les dates.",
+      "range" : `Dossiers entre&nbsp;<strong>{{startDate}}</strong>&nbsp;et&nbsp;<strong>{{endDate}}</strong>.`
+    }
   }
 };
