@@ -11,7 +11,17 @@ export default Ember.Component.extend({
   facetsVisible: false,
   facetsHideable: Ember.computed.alias('screen.isMediumAndDown'),
   filterNumber: Ember.computed(function(){
-    return Ember.$('.facet-items > .active').length;
+    const params = this.get('param');
+    let result = 0;
+    for (const key in params){
+      if (!params.hasOwnProperty(key)){continue;}
+      if (typeof params[key] === "string"){
+        result++;
+      } else {
+        result+= params[key].length;
+      }
+    }
+    return result;
   }),
   actions:{
     toggleFacets(){
