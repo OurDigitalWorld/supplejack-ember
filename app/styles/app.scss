@@ -7,6 +7,7 @@ $screen-xl: 1400px;
 //set custom variables
 $margin-standard: 10px;
 $margin-wide: (2 * $margin-standard);
+$indent-standard: 20px;
 $image-width-title: 50px;
 $image-width: 150px;
 $image-placeholder: '/assets/thumb_placeholder.gif';
@@ -98,6 +99,10 @@ aside{
     padding: 0;
     a {&:hover{text-decoration:none;}}
     li.facet-category{
+      .facet-link {
+        text-indent: -$indent-standard;
+        margin-left: $indent-standard;
+      }
       li.show-more{
         cursor: pointer;
       }
@@ -305,4 +310,34 @@ div#body-container{
 //stops leaving room for github ribbon when screen is really wide
 @media(min-width: $screen-xl){
   header #search-bar > * {width:100%;}
+}
+
+//spinner for when app is loading
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: $brand-primary;
+
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  } 50% {
+      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    } 100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      }
 }

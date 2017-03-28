@@ -8,21 +8,21 @@
 </a>
 
 {{#ember-wormhole to="left-sidebar"}}
-  {{search-facets meta=model.meta param=and options=facetFields onChange=(action "updateParams")}}
+  {{search-facets meta=model.meta param=and options=facetFields onChange=(action "updateParams") isLoading=isLoading}}
 {{/ember-wormhole}}
 
 {{#ember-wormhole to="search-bar"}}
-  {{search-searchbar param=text onChange=(action "updateParams")}}
+  {{search-searchbar param=text onChange=(action "updateParams") isLoading=isLoading}}
 {{/ember-wormhole}}
 
 
   <ul class="nav nav-tabs">
-    {{#active-link}}
-      {{link-to (t "site.tab.text") "search.index" (query-params per_page=20 geo_bbox='') current-when="search.index"}}
-    {{/active-link}}
-    {{#active-link}}
-      {{link-to (t "site.tab.map") "search.map" (query-params page=1 per_page=100 geo_bbox='0,0,0,0') current-when="search.map"}}
-    {{/active-link}}
+      {{#active-link class=(if isLoading "disabled")}}
+        {{link-to (t "site.tab.text") "search.index" (query-params per_page=20 geo_bbox='') current-when="search.index"}}
+      {{/active-link}}
+      {{#active-link class=(if isLoading "disabled")}}
+        {{link-to (t "site.tab.map") "search.map" (query-params page=1 per_page=100 geo_bbox='0,0,0,0') current-when="search.map"}}
+      {{/active-link}}
   </ul>
 
 {{outlet}}

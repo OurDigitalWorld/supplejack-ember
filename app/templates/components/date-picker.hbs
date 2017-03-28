@@ -12,7 +12,7 @@ as |bg|}}
   connect=true
   step=1
   class='date-slider'
-  disabled=isDisabled
+  disabled=(or isDisabled isLoading)
   on-update=(action "updateDate")
   on-change=(action "executeSearch")
 }}

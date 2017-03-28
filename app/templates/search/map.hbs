@@ -7,9 +7,15 @@
   {{/if}}
 {{/search-result-stats}}
 <div class="overlay-container">
-    <div class="overlay-content {{if isHidden "hidden"}}">
+  <div class="overlay-content">
+    {{#if search.isLoading}}
+      <span class="label label-default">{{t "site.loading"}}</span>
+    {{else}}
+      {{#unless isHidden}}
         <button class="btn btn-primary" {{action "updateParams" boundingBox}}>{{t "searchResults.map.searchArea"}}</button>
-    </div>
+      {{/unless}}
+    {{/if}}
+  </div>
 </div>
 {{#leaflet-map
   tagName="main"

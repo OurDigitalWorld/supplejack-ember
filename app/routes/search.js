@@ -50,5 +50,14 @@ export default Ember.Route.extend({
     // passing them to the API.
     and: {refreshModel: true},
     geo_bbox: {refreshModel: true}
+  },
+  actions: {
+    loading(transition){
+      let controller = this.controllerFor('search');
+     controller.set('isLoading', true);
+      transition.promise.finally(function(){
+        controller.set('isLoading', false);
+      })
+    }
   }
 });

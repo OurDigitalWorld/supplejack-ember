@@ -2,7 +2,7 @@
   <span class="facet-category-name">{{t (concat 'field.title.' category)}}</span>
   <ul class="facet-items">
     {{#each-in filteredOptions as |title results|}}
-      {{facet-link category title results param onChange=(action onChange)}}
+      {{facet-link category title results param onChange=(action onChange) isLoading=isLoading}}
     {{/each-in}}
     {{#if hasHidden}}
       <li class="show-more">

@@ -2,6 +2,7 @@ export default {
   "site": {
     "subtitle" : "Discovery Layer",
     "gitHubFork" : "Fork me on GitHub",
+    "loading" : "Loading new results...",
     "searchBar" : {
       "input" : "Enter search text",
       "submit" : "Execute Search"

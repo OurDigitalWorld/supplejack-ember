@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
   //"facet_field:Text to be Filtered,facet_field:Another Filter,"
   and: [],
   geo_bbox: '',
+  isLoading: false,
 
   //Add keys for each facet you want here -- used by recordFacets (below), and is passed down search-facets > facet-category
   //Available options:
@@ -38,12 +39,14 @@ export default Ember.Controller.extend({
     //accepts object containing key/value pairs
     //where the key is a param name, and the value is its value
     updateParams(obj){
-      for (const key in obj){
-        if (!obj.hasOwnProperty(key)) {continue;}
-        this.set(key, obj[key]);
-        //needs this to deal with the fact that the route is not listening for changes within objects on query params
-        if (key === 'and'){
-          this.notifyPropertyChange(key);
+      if (this.get('isLoading') === false){
+        for (const key in obj){
+          if (!obj.hasOwnProperty(key)) {continue;}
+          this.set(key, obj[key]);
+          //needs this to deal with the fact that the route is not listening for changes within objects on query params
+          if (key === 'and'){
+            this.notifyPropertyChange(key);
+          }
         }
       }
     }

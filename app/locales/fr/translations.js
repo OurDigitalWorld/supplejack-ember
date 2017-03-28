@@ -2,6 +2,7 @@ export default {
   "site": {
     "subtitle": "couche de découverte",
     "gitHubFork": "Fourchez moi sur GitHub",
+    "loading": "Chargement de nouveaux résultats...",
     "searchBar" : {
       "input" : "Texte de recherche d'entrée",
       "submit" : "Exécuter la recherche"

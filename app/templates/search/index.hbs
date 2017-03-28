@@ -4,6 +4,13 @@
 {{/search-result-stats}}
 <main>
   <h2 class="sr-only">{{t "searchResults.title"}}</h2>
+  <div class="overlay-container">
+    <div class="overlay-content">
+    {{#if search.isLoading}}
+        <span class="label label-default">{{t "site.loading"}}</span>
+    {{/if}}
+    </div>
+  </div>
   {{#each model as |item|}}
     {{search-result item=item}}
   {{/each}}

@@ -13,13 +13,14 @@ onChange: action to be executed when queryParams are changed by this component.
   <div class="input-group" role="search" aria-label="search">
     <label for="searchbar-search" class="sr-only">{{t "site.searchBar.input"}}</label>
     {{input
+      disabled=isLoading
       id="searchbar-search"
       class="form-control"
       value=searchParams.text
     }}
     <span class="input-group-btn">
       <label for="search-button" class="sr-only">{{t "site.searchBar.submit"}}</label>
-      <button id="search-button" class="btn btn-primary" type="submit">
+      <button id="search-button" class="btn btn-primary" type="submit" disabled={{isLoading}}>
         <span class="glyphicon glyphicon-search"></span>
       </button>
     </span>
