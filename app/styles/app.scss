@@ -7,6 +7,7 @@ $screen-xl: 1400px;
 //set custom variables
 $margin-standard: 10px;
 $margin-wide: (2 * $margin-standard);
+$margin-nav-height: 40px; //equal in height to the nav tabs, good for top of aside
 $indent-standard: 20px;
 $image-width-title: 50px;
 $image-width: 150px;
@@ -121,11 +122,11 @@ aside{
   .btn-group {
     display:flex;
     justify-content: center;
-    margin-top: $margin-standard;
+    margin-top: $margin-nav-height;
   }
   .date-slider{
-    margin: $margin-standard;
-    width: $aside-width - 2 * $margin-standard;
+    margin: $margin-wide;
+    width: $aside-width - 2 * $margin-wide;
     .noUi-connect {
       background: $brand-primary;
     }
@@ -312,7 +313,7 @@ div#body-container{
   header #search-bar > * {width:100%;}
 }
 
-//spinner for when app is loading
+//-----LOADING-----
 .spinner {
   width: 40px;
   height: 40px;
