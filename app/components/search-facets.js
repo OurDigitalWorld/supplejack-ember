@@ -1,16 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  didUpdate(){
-    this._super(...arguments);
-    if(this.get('screen.isMediumAndUp')){
-      this.set('facetsVisible', false);
-    }
-  },
-  screen: Ember.inject.service(),
+  fastboot: Ember.inject.service(),
   facetsVisible: false,
-  facetsHideable: Ember.computed.alias('screen.isMediumAndDown'),
-  filterNumber: Ember.computed(function(){
+  filterNumber: Ember.computed('param', function(){
     const params = this.get('param');
     let result = 0;
     for (const key in params){
@@ -22,11 +15,10 @@ export default Ember.Component.extend({
       }
     }
     return result;
-  }),
+  }).property('param', 'facetsVisible'),
   actions:{
     toggleFacets(){
       this.toggleProperty('facetsVisible');
-      this.notifyPropertyChange('filterNumber');
     }
   }
 });

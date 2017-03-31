@@ -273,7 +273,7 @@ div#body-container{
 }
 
 //-----RESPONSIVE-----
-//media queries for full site
+//media queries for mobile site
 @media(max-width: $screen-md){
   //allows search bar to appear below header
   header{
@@ -288,7 +288,6 @@ div#body-container{
     >*{margin: $margin-standard 0;}
   }
   //button to toggle filters appears
-  .aside-toggle {display:block;}
   aside{
     max-width: 100%;
     min-width: 100%;
@@ -302,6 +301,10 @@ div#body-container{
   footer{
     min-height: 0;
   }
+}
+//media queries for full site
+@media(min-width: $screen-md){
+  .facet-toggle { display: none;}
 }
 //moves thumbnail above search result on small screens / on map search
 @media(max-width: $screen-xs){@include search-result-small()}
@@ -342,3 +345,4 @@ div#body-container{
         -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
       }
 }
+

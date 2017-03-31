@@ -57,7 +57,7 @@ export default Ember.Route.extend({
      controller.set('isLoading', true);
       transition.promise.finally(function(){
         controller.set('isLoading', false);
-      })
+      });
     }
   }
 });

@@ -7,21 +7,22 @@ param: the queryParam that allows for "and" facet filtering.
 onChange: action to be executed when queryParams are changed by this component.
 --}}
 <ul class="facet-categories {{if facetsVisible "visible"}}">
-  {{date-picker param=param onChange=(action onChange) isLoading=isLoading}}
+  {{#unless fastboot.isFastBoot}}
+    {{date-picker param=param onChange=(action onChange) isLoading=isLoading}}
+  {{/unless}}
   {{#each-in meta.facets as |category facets|}}
     {{facet-category category facets param onChange=(action onChange) options=(get options category) isLoading=isLoading}}
   {{/each-in}}
 </ul>
 
-{{#if facetsHideable}}
-  <button class="btn-block text-center btn-primary" {{action "toggleFacets"}}>
-    {{#if facetsVisible}}
-      {{t "facets.toggle.hide"}} <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
-    {{else}}
-      {{#if (gt filterNumber 0)}}
-        <span class="badge">{{filterNumber}}</span>
-      {{/if}}
-      {{t "facets.toggle.show"}} <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-    {{/if}}
-  </button>
-{{/if}}
+<button class="btn-block text-center btn-primary facet-toggle" {{action "toggleFacets"}}>
+  {{#if (gt filterNumber 0)}}
+    <span class="badge">{{filterNumber}}</span>
+  {{/if}}
+  {{#if facetsVisible}}
+    {{t "facets.toggle.hide"}} <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+  {{else}}
+
+    {{t "facets.toggle.show"}} <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+  {{/if}}
+</button>
