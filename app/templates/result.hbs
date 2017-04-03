@@ -16,7 +16,7 @@
     {{#each recordFields as |field|}}
       <dt>{{t (concat 'field.title.' field)}}</dt>
       <dd>
-        {{csv-list (get model field) unknown=(t "searchResults.result.unknown")}}
+        {{csv-list (get model field) empty=(t "searchResults.result.unknown")}}
       </dd>
     {{/each}}
   </dl>
