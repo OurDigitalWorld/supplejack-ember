@@ -7,6 +7,7 @@ export default Ember.Component.extend({
     const params = this.get('param');
     let result = 0;
     for (const key in params){
+      //adds up the number of currently active 'and' params
       if (!params.hasOwnProperty(key)){continue;}
       if (typeof params[key] === "string"){
         result++;

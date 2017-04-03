@@ -25,7 +25,8 @@ export default {
       "byLine": "Par",
       "back" : "Retour aux résultats de recherche",
       "originalSource" : `<a href={{url}}>Voir la source originale</a> fournie par {{contributor}}.`,
-      "share" : "Participer"
+      "share" : "Participer",
+      "unknown" : "(Inconnu)"
     },
     "stats" : {
       "pageOfResults" : "Page {{pageNumber}} de {{totalResults}}.",

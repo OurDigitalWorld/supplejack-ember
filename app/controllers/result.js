@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  fastboot: Ember.inject.service(),
   recordFields: [
     'category',
     'creator',

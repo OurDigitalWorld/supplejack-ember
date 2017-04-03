@@ -189,8 +189,7 @@ dl{
   dt::after{content: ":";}
   dd{
     margin: 0 0 0 ($margin-wide);
-    &:empty:before{
-      content: '(unknown)';
+    .unknown{
       color: $text-muted;
       font-style: italic;
     }

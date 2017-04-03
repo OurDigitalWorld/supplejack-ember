@@ -7,13 +7,16 @@
   </svg>
 </a>
 
-{{#ember-wormhole to="left-sidebar"}}
-  {{search-facets meta=model.meta param=and options=facetFields onChange=(action "updateParams") isLoading=isLoading}}
-{{/ember-wormhole}}
+{{#unless fastboot.isFastBoot}}
+  {{#ember-wormhole to="left-sidebar"}}
+    {{search-facets meta=model.meta param=and options=facetFields onChange=(action "updateParams") isLoading=isLoading}}
+  {{/ember-wormhole}}
 
-{{#ember-wormhole to="search-bar"}}
-  {{search-searchbar param=text onChange=(action "updateParams") isLoading=isLoading}}
-{{/ember-wormhole}}
+  {{#ember-wormhole to="search-bar"}}
+    {{search-searchbar param=text onChange=(action "updateParams") isLoading=isLoading}}
+  {{/ember-wormhole}}
+{{/unless}}
+
 
 
   <ul class="nav nav-tabs">

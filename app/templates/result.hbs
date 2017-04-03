@@ -1,18 +1,23 @@
-{{#ember-wormhole to="search-bar"}}
-  <button class="btn btn-default" {{action 'back'}}>&lt;&lt; {{t "searchResults.result.back"}}</button>
-{{/ember-wormhole}}
-{{#ember-wormhole to="left-sidebar"}}
-  <img class="result-thumbnail" src={{model.thumbnail_url}}>
-  <h3>{{t "searchResults.result.share"}}</h3>
-  {{share-panel title="" buttons="fb,twitter,linkedin,instagram"}}
-{{/ember-wormhole}}
+{{#unless fastboot.isFastBoot}}
+  {{#ember-wormhole to="search-bar"}}
+    <button class="btn btn-default" {{action 'back'}}>&lt;&lt; {{t "searchResults.result.back"}}</button>
+  {{/ember-wormhole}}
+  {{#ember-wormhole to="left-sidebar"}}
+    <img class="result-thumbnail" src={{model.thumbnail_url}}>
+    <h3>{{t "searchResults.result.share"}}</h3>
+    {{share-panel title="" buttons="fb,twitter,linkedin,instagram"}}
+  {{/ember-wormhole}}
+{{/unless}}
 
 <main>
   <h2>{{model.title}}</h2>
   <p>{{{t "searchResults.result.originalSource" url=model.source_url contributor=model.display_content_partner}}}</p>
   <dl>
     {{#each recordFields as |field|}}
-      <dt>{{t (concat 'field.title.' field)}}</dt><dd>{{csv-list (get model field)}}</dd>
+      <dt>{{t (concat 'field.title.' field)}}</dt>
+      <dd>
+        {{csv-list (get model field) unknown=(t "searchResults.result.unknown")}}
+      </dd>
     {{/each}}
   </dl>
 </main>

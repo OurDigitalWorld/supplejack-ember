@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  fastboot: Ember.inject.service(),
   queryParams: ['page', 'text', 'per_page', 'and', 'geo_bbox'],
   page: 1,
   text: '',
