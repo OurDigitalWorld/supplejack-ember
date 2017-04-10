@@ -1,0 +1,8 @@
+{{!--USAGE:
+  {{#set-facet facet=facet value=value route=route}}{{yield}}{{/set-facet}}
+  facet = the facet category you're setting, eg 'display_content_partner'
+  value = the value this link will set that value to, eg 'Our Digital World'
+  route = the route the link should transition to, eg 'search'
+  yield = whatever you want the display content of your link to be
+--}}
+{{#link-to route (query-params and=hrefTo)}}{{yield}}{{/link-to}}

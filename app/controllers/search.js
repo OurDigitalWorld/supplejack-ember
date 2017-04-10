@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   fastboot: Ember.inject.service(),
+  application: Ember.inject.controller('application'),
   queryParams: ['page', 'text', 'per_page', 'and', 'geo_bbox'],
   page: 1,
   text: '',
@@ -25,7 +26,7 @@ export default Ember.Controller.extend({
   },
 
   //all record fields that are a facet. USED IN ROUTES/APPLICATION
-  recordFacets: Ember.computed('recordFields.[]', function(){
+  recordFacets: Ember.computed('facetFields.[]', function(){
     let facetString = '';
     for (const key in this.get('facetFields')){
       if (!this.get('facetFields').hasOwnProperty(key)){continue;}

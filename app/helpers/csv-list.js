@@ -22,7 +22,7 @@ export function csvList(params, hash) {
       data.forEach(function(res){
         result += Ember.String.htmlSafe(`<li>${Ember.Handlebars.Utils.escapeExpression(res)}</li>`);
       });
-      return new Ember.String.htmlSafe(`<ul class="csv">${result}</ul>`);
+      return new Ember.String.htmlSafe(`<ul class="csv text">${result}</ul>`);
     }
   }
 }

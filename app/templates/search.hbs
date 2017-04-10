@@ -9,7 +9,7 @@
 
 {{#unless fastboot.isFastBoot}}
   {{#ember-wormhole to="left-sidebar"}}
-    {{search-facets meta=model.meta param=and options=facetFields onChange=(action "updateParams") isLoading=isLoading}}
+    {{search-facets meta=model.meta param=and options=facetFields onChange=(action "updateParams") route=application.currentRouteName isLoading=isLoading}}
   {{/ember-wormhole}}
 
   {{#ember-wormhole to="search-bar"}}

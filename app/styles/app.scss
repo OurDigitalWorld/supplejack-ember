@@ -196,16 +196,20 @@ dl{
   }
 }
 //changes a list into a set of comma separated values
+//use class="csv text" for text lists, and class="csv links" for lists of anchors
 .csv {
   padding: 0;
   display: inline;
   list-style: none;
-  li{
-    display: inline;
-    &:after {content: ', ';}
-    &:last-of-type:after {content: '';}
+  li {display: inline;}
+  &.text {
+    li:not(:last-of-type):after {content: ', ';}
+  }
+  &.links{
+    li:not(:last-of-type) > a:after {content: ',';}
   }
 }
+
 
 //-----LAYOUT-----
 //includes flex setup and margins for full site

@@ -11,12 +11,21 @@
 
 <main>
   <h2>{{model.title}}</h2>
-  <p>{{{t "searchResults.result.originalSource" url=model.source_url contributor=model.display_content_partner}}}</p>
+  <p>
+    {{{t "searchResults.result.originalSource" url=model.source_url}}}
+    {{#set-facet facet='display_content_partner' value=model.display_content_partner route='search'}}
+      {{model.display_content_partner}}
+    {{/set-facet}}
+  </p>
   <dl>
     {{#each recordFields as |field|}}
-      <dt>{{t (concat 'field.title.' field)}}</dt>
+      <dt>{{t (concat 'field.title.' field.value)}}</dt>
       <dd>
-        {{csv-list (get model field) empty=(t "searchResults.result.unknown")}}
+        {{#if field.links}}
+          {{csv-links field.value (get model field.value) route="search" empty=(t "searchResults.result.unknown")}}
+        {{else}}
+          {{csv-list (get model field.value) empty=(t "searchResults.result.unknown")}}
+        {{/if}}
       </dd>
     {{/each}}
   </dl>

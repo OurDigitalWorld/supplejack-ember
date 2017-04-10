@@ -24,7 +24,7 @@ export default {
     "result" : {
       "byLine": "Par",
       "back" : "Retour aux résultats de recherche",
-      "originalSource" : `<a href={{url}}>Voir la source originale</a> fournie par {{contributor}}.`,
+      "originalSource" : `<a href={{url}}>Voir la source originale</a> fournie par:`,
       "share" : "Participer",
       "unknown" : "(Inconnu)"
     },

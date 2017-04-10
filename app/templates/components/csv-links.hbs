@@ -1,0 +1,18 @@
+{{!--USAGE
+  {{#csv-links category values route=route empty=empty}}
+  category = the name of the facet category this is a list of links for
+  values = an array of possible values for this category to have
+  route = the specific route that links should resolve to
+  empty (optional) = text that should be displayed if there is no data
+--}}
+{{#if (eq dataLength 0)}}
+  <span class="empty">{{empty}}</span>
+{{else if (eq dataLength 1)}}
+  {{#set-facet facet=category value=data.firstObject route=route}}{{data.firstObject}}{{/set-facet}}
+{{else}}
+  <ul class="csv links">
+    {{#each data as |field|}}
+      <li>{{#set-facet facet=category value=field route=route}}{{field}}{{/set-facet}}</li>
+    {{/each}}
+  </ul>
+{{/if}}

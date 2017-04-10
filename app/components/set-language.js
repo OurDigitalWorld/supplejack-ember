@@ -10,10 +10,5 @@ export default Ember.Component.extend({
     } else {
       this.set('isActive', false);
     }
-  },
-  actions: {
-    onClick(){
-      this.get('onChange')(this.get('language'));
-    }
   }
 });

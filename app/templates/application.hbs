@@ -25,7 +25,7 @@
     <aside id="left-sidebar"></aside>
   </div>
   <footer>
-    {{#set-language language="en" locale=(get this.i18n 'locale') onChange=(action "setLocale")}}English{{/set-language}} |
-    {{#set-language language="fr" locale=(get this.i18n 'locale') onChange=(action "setLocale")}}Français{{/set-language}}
+    {{#set-language language="en" locale=(get this.i18n 'locale') route=currentRouteName}}English{{/set-language}} |
+    {{#set-language language="fr" locale=(get this.i18n 'locale') route=currentRouteName}}Français{{/set-language}}
   </footer>
 </div>

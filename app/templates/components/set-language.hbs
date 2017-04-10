@@ -1,6 +1,6 @@
 {{#if isActive}}
   <strong>{{yield}}</strong>
 {{else}}
-  <a href="" {{action "onClick"}}>{{yield}}</a>
+  {{#link-to route (query-params hl=language)}}{{yield}}{{/link-to}}
 {{/if}}
 
