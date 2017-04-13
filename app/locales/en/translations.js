@@ -29,7 +29,7 @@ export default {
       "unknown" : "(Unknown)"
     },
     "stats" : {
-      "pageOfResults" : "Page {{pageNumber}} of {{totalResults}}.",
+      "pageOfResults" : "Page {{pageNumber}} of {{totalResults}} results.",
       "resultsPerPage" : "Results per page",
       "displayingResults" : "Displaying {{results}} results.",
       "displayingPartialResults" : "Displaying {{perPage}} of {{totalResults}} results.",
