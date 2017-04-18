@@ -66,6 +66,16 @@ $main-width: 1000px;
   }
 }
 
+#search-bar {
+  .btn-group-xs > .btn-link {
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+    &:focus{
+      text-decoration: none;
+    }
+  }
+}
+
 //github fork me ribbon animation
 .github-corner:hover .octo-arm{
   animation:octocat-wave 560ms ease-in-out;
@@ -227,7 +237,6 @@ header{
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  margin-bottom: $margin-standard;
   #site-title{min-width: $aside-width + $margin-wide;}
   #search-bar{
     margin: $margin-standard;

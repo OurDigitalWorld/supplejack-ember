@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   fastboot: Ember.inject.service(),
   application: Ember.inject.controller('application'),
-  queryParams: ['page', 'text', 'per_page', 'and', 'geo_bbox'],
+  queryParams: ['page', 'text', 'per_page', 'and', 'geo_bbox', 'fuzzySearch'],
   page: 1,
   text: '',
   per_page: 20,
@@ -12,6 +12,7 @@ export default Ember.Controller.extend({
   and: [],
   geo_bbox: '',
   isLoading: false,
+  fuzzySearch: true,
 
   //Add keys for each facet you want here -- used by recordFacets (below), and is passed down search-facets > facet-category
   //Available options:

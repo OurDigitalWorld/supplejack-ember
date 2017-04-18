@@ -14,6 +14,16 @@
 
   {{#ember-wormhole to="search-bar"}}
     {{search-searchbar param=text onChange=(action "updateParams") isLoading=isLoading}}
+    {{#bs-button-group
+      value=fuzzySearch
+      type="radio"
+      size="xs"
+      classes="test"
+      onChange=(action (mut fuzzySearch))
+    as |bg|}}
+      {{#bg.button class="btn-link" value=true}}{{t "site.searchBar.fuzzySearch.true"}}{{/bg.button}}
+      {{#bg.button class="btn-link" value=false}}{{t "site.searchBar.fuzzySearch.false"}}{{/bg.button}}
+    {{/bs-button-group}}
   {{/ember-wormhole}}
 {{/unless}}
 

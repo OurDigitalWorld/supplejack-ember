@@ -5,7 +5,11 @@ export default {
     "loading" : "Loading new results...",
     "searchBar" : {
       "input" : "Enter search text",
-      "submit" : "Execute Search"
+      "submit" : "Execute Search",
+      "fuzzySearch" : {
+        "true" : "Match similar terms",
+        "false" : "Match exact terms only"
+      }
     },
     "tab": {
       "text" : "Text",
