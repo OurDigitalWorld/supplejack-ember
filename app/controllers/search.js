@@ -22,6 +22,7 @@ export default Ember.Controller.extend({
   //    <integer> -> will show a minimum of this number of results, rounded up to the nearest order of magnitude
   facetFields: {
     'display_content_partner' : {show: 'all'},
+    'publisher' : {show: 'all'},
     'subject' : {},
     'language' : {show: 'none'}
   },
