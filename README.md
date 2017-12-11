@@ -48,7 +48,10 @@ Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
-* [Demo site](http://159.203.21.122/search)
+* Demo sites:
+  * [BCDL-ODW](http://eln-sj4.is.sfu.ca:8000/search)
+  * [BCDL Only](http://eln-sj4.is.sfu.ca:8001/search)
+  * [ODW Only](http://eln-sj4.is.sfu.ca:8002/search)
 * [ember.js](http://emberjs.com/)
 * [ember-cli](https://ember-cli.com/)
 * Development Browser Extensions
